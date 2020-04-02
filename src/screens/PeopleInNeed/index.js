@@ -134,7 +134,7 @@ class PeopleInNeed extends React.Component {
                 disableElevation
                 onClick={() => this.handleBeneficaryCardToggle(beneficary.id)}
               >
-                {expanded ? 'Collapse Details' : 'Know More'}
+                {expanded ? 'Close' : 'Know More'}
               </Button>
             </Box>
           </CardActions>
