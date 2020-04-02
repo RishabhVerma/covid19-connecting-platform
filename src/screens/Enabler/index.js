@@ -53,9 +53,9 @@ class EnablerLandingPage extends React.Component {
             <Spacer height={theme.spacing(2)} />
             <Typography variant="h3">HELP US, HELP THEM</Typography>
             <Spacer height={theme.spacing(1)} />
-            <Typography variant="body1">{'We are all aware of the URGENT food crisis happening in India. We have on-ground helpers/volunteers who are reaching out to people in need and .... more content comes here'}</Typography>
+            <Typography variant="body1">{'We are all aware of the URGENT food crisis taking place in India. You know them – they are your household help, vegetable vendors, istri bhaiya or the innumerable migrant workers who are stranded kms away from their home because of this unplanned lockdown. '}</Typography>
             <Spacer height={theme.spacing(1)} />
-            <Typography variant="body1">{'Do you know anyone who needs aid in form of food, clothes, or medicines because of the lockdown'}</Typography>
+            <Typography variant="body1">{'DO YOU KNOW ANYONE who needs urgent aid because of the COVID crisis? Through this portal, we are trying to reach to all of these people and provide them basic necessities like aata, chawal, daal, cooking oil, stove etc.'}</Typography>
             <Spacer height={theme.spacing(2)} />
             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegJ0EA3L7XGNMhSBV3Erv00ypPkAgo3s3lljLLuaVVpKzb8Q/viewform?embedded=true" width={formWidth} height="2245" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
           </Box>

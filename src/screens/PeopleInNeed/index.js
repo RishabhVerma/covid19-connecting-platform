@@ -171,9 +171,12 @@ class PeopleInNeed extends React.Component {
           <Spacer height={theme.spacing(2)} />
           <Typography variant="h3">HELP US, HELP THEM</Typography>
           <Spacer height={theme.spacing(1)} />
-          <Typography variant="body1">{'We have a team of __ working relentlessly  in and around Delhi and UP, on-ground to deliver essentials to migrant workers, stranded because of the lockdown or residents of densely packed slums.'}</Typography>
+          <Typography variant="body1">{'We have a team of volunteers and social activists working relentlessly in and around Delhi and UP to deliver essentials to stranded(due to lockdown) migrant workers or residents of densely packed slums or another word for underserved. We have helped about 120 families till now and over thousands await. All help in terms of money and labour is welcome and needed desperately.'}</Typography>
           <Spacer height={theme.spacing(1)} />
-          <Typography variant="body1">{'For volunteering on-ground, please call96995966.We have crowd-sourced the following people who need essentials like atta, dal, chawal to stay alive in this pandemic. You may browse and connect with them and help..'}</Typography>
+          <Typography variant="body1">{'Here is how you can help.'}</Typography>
+          <Typography variant="body1">{'For volunteering on-ground, please call 899765210.'}</Typography>
+          <Typography variant="body1">{'To donate funds directly to beneficiaries, please browse through this crowd-sourced and further verified by our team.'}</Typography>
+          <Typography variant="body1">{'You can also just donate money to us. We are in the process of setting up an on online page to collect payments. Till then you can get in touch with us directly on the number given above.'}</Typography>
           <Spacer height={theme.spacing(1)} />
           <Typography variant="body1">{'Here is a list of all the people who need help. You can filter the list by state using the dropdown below.'}</Typography>
           <Spacer height={theme.spacing(2)} />

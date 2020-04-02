@@ -32,7 +32,7 @@ const styles = theme => ({
 
 const CONTENT = {
   heading: 'How it Works?',
-  content: 'Covid19 has wreaked havoc for the under served. India has had more deaths due to mishandling of the lockdown than Corona. We are connecting people in need to people who want to be helped.',
+  content: '',
   btnText: 'Know More',
 }
 
@@ -46,7 +46,7 @@ class HowItWorksBlock extends React.Component {
           <Typography variant="h4" className={classes.headingText}>{CONTENT.heading}</Typography>
         </Box>
         <Spacer height={theme.spacing(1)} />
-        <Typography variant="body2" className={classes.content}>{CONTENT.content}</Typography>
+        <Typography variant="body2" className={classes.content}>{'COVID-19 has wreaked havoc for the under served in India. It has amplified their everyday struggles and has been a cause for casualties, even. The plight of the migrant workers are getting worse with increased shortage of ration. Virus scares are their second priority as they are struggling to stay alive. There were many requests to help and this portal connects people who want to donate funds or volunteer and a crowd-sourced list of people in need. Basically, you can reach out directly to the ones you will be helping.'}</Typography>
         <Spacer height={theme.spacing(1)} />
         <Button variant="outlined" className={classes.knowMoreBtn}>{CONTENT.btnText}</Button>
       </Box>
