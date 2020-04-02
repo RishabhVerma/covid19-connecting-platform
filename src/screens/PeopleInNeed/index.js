@@ -111,13 +111,13 @@ class PeopleInNeed extends React.Component {
               <Spacer height={theme.spacing(1)} />
               <Typography variant="h6" component="h3">What do they need?</Typography>
               <Typography variant="body1">
-                {beneficary.needs.split("\n").map((i,key) => {
+                {beneficary.needs && beneficary.needs.split("\n").map((i,key) => {
                   return <Typography variant="body1" key={key}>{i}</Typography>;
                 })}
               </Typography>
               <Spacer height={theme.spacing(1)} />
               <Typography variant="body1">
-                {beneficary.notes.split("\n").map((i,key) => {
+                {beneficary.notes && beneficary.notes.split("\n").map((i,key) => {
                   return <Typography variant="body1" key={key}>{i}</Typography>;
                 })}
               </Typography>
