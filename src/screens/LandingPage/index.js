@@ -42,9 +42,9 @@ export class LandingPage extends React.Component {
             </Button>
           </Link>
           <Spacer height={theme.spacing(2)} />
-          <Link href="/enablerLanding">
+          <Link href="/peopleInNeed">
             <Button variant="contained" color="primary" className={classes.btn} size="large" disableElevation>
-              'Click to see people who need help'
+              {'Click to see people who need help'}
             </Button>
           </Link>
         </Box>
