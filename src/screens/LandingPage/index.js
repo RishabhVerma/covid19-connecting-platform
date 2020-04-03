@@ -1,13 +1,14 @@
 import React from 'react';
+import Div100vh from 'react-div-100vh'
 import { Typography, Grid, Box, withStyles, Container, Button, Link } from '@material-ui/core';
 
 import Spacer from '../../components/Spacer';
+
 
 const styles = theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    height: '100vh',
     justifyContent: 'center',
   },
   btn: {
@@ -19,6 +20,7 @@ export class LandingPage extends React.Component {
   render() {
     const { classes, theme } = this.props;
     return (
+      <Div100vh>
       <Box className={classes.container}>
       <Container maxWidth="sm">
         <Box>
@@ -47,9 +49,11 @@ export class LandingPage extends React.Component {
               {'Click to see people who need help'}
             </Button>
           </Link>
+          <Spacer height={theme.spacing(2)} />
         </Box>
       </Container>
       </Box>
+      </Div100vh>
     );
   }
 };
