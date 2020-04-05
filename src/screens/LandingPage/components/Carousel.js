@@ -5,6 +5,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { withStyles, Box, Typography, Fab } from '@material-ui/core';
 
 import CarouselSlide1 from '../../../assets/img/carousel/slide1.jpg';
+import CarouselSlide2 from '../../../assets/img/carousel/slide2.jpg';
 
 
 const styles = theme => ({
@@ -47,8 +48,8 @@ const SLIDES = [
   },
   {
     "id": 2,
-    "text": "The text will change but the other things remains static.",
-    "img": CarouselSlide1
+    "text": "Roshni didi makes jhadus and sells it in Delhi. Her household runs on her everyday wage She has none now.",
+    "img": CarouselSlide2
   }
 ];
 

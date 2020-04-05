@@ -35,9 +35,9 @@ export class LandingPage extends React.Component {
         <SmallDescription />
         <MainCTABtns />
         <OurImpact />
+        <Donate />
         <AboutUs />
         <MeetTheTeam />
-        <Donate />
         <Footer />
       </>
     );
