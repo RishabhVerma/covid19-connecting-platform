@@ -5,9 +5,11 @@ import { SnackbarProvider } from 'notistack';
 
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
-import './styles/styles.css';
 import { theme } from './theme/theme';
 import configureStore from './store/config/configureStore';
+
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 const store = configureStore();
 
@@ -16,6 +18,8 @@ store.subscribe(() => {
 });
 
 const App = () => (
+  <>
+  <CssBaseline />
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
       <SnackbarProvider maxSnack={3}>
@@ -23,6 +27,7 @@ const App = () => (
       </SnackbarProvider>
     </MuiThemeProvider>
   </Provider>
+  </>
 );
 
 ReactDOM.render(<App />, document.getElementById('app'));
