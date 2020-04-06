@@ -12,8 +12,10 @@ const styles = theme => ({
   slideContainer: {
     width: '100%',
     height: 280,
-    backgroundColor: 'red',
-    // backgroundImage: `url(${CarouselSlide1})`,
+    [theme.breakpoints.up('lg')]: {
+      height: 370,
+    },
+    backgroundPosition: 'center center',
     backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
@@ -21,10 +23,16 @@ const styles = theme => ({
     position: 'relative',
   },
   slideTextContainer: {
+    [theme.breakpoints.up('lg')]: {
+      width: '15%',
+    },
     width: '60%',
     padding: theme.spacing(2)
   },
   slideText: {
+    [theme.breakpoints.up('lg')]: {
+      fontSize: 28,
+    },
     fontSize: 20,
     color: '#ffffff'
   },

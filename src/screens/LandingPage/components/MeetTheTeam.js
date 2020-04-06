@@ -8,7 +8,6 @@ import RohitImage from '../../../assets/img/team/rohit.jpg';
 const styles = theme => ({
   container: {
     padding: theme.spacing(2),
-    backgroundColor: '#e8e8e8de',
   },
   memberTile: {
     display: 'flex',

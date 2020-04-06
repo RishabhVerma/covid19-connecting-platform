@@ -3,6 +3,7 @@ import { withStyles, Paper, Typography } from '@material-ui/core';
 
 const styles = theme => ({
   container: {
+    backgroundColor: '#e8e8e8de',
     padding: theme.spacing(2),
   },
 });

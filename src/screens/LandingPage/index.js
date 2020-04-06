@@ -32,13 +32,15 @@ export class LandingPage extends React.Component {
       <>
         <NavBar />
         <Carousel />
-        <SmallDescription />
-        <MainCTABtns />
-        <OurImpact />
-        <Donate />
-        <AboutUs />
-        <MeetTheTeam />
-        <Footer />
+        <Container maxWidth="lg">
+          <SmallDescription />
+          <MainCTABtns />
+          <OurImpact />
+          <Donate />
+          <AboutUs />
+          <MeetTheTeam />
+          <Footer />
+        </Container>
       </>
     );
   }

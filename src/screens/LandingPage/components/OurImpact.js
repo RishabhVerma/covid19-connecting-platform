@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, withStyles, Typography, Box } from '@material-ui/core';
+import { Paper, withStyles, Typography, Box, Grid } from '@material-ui/core';
 
 const styles = theme => ({
   container: {
@@ -65,15 +65,17 @@ class OurImpact extends React.Component {
   renderAnalytic(analytic) {
     const { classes } = this.props;
     return (
-      <Box key={analytic.id} className={classes.analyticContainer} style={{ background: analytic.background }}>
-        <Box className={classes.analyticNumberContainer}>
-          <Typography variant="h5" component="h4" className={classes.analyticNumber}>{analytic.highlight}</Typography>
+      <Grid item xs={12} md={12} lg={6}>
+        <Box key={analytic.id} className={classes.analyticContainer} style={{ background: analytic.background }}>
+          <Box className={classes.analyticNumberContainer}>
+            <Typography variant="h5" component="h4" className={classes.analyticNumber}>{analytic.highlight}</Typography>
+          </Box>
+          <Box className={classes.analyticDescriptionContainer}>
+            <Typography variant="body1">{analytic.text1}</Typography>
+            <Typography variant="body1">{analytic.text2}</Typography>
+          </Box>
         </Box>
-        <Box className={classes.analyticDescriptionContainer}>
-          <Typography variant="body1">{analytic.text1}</Typography>
-          <Typography variant="body1">{analytic.text2}</Typography>
-        </Box>
-      </Box>
+      </Grid>
     );
   }
 
@@ -82,10 +84,12 @@ class OurImpact extends React.Component {
     return (
       <>
       <Paper elevation={0} className={classes.container}>
-        <Typography variant="h5" component="h2">{'OUR IMPACT'}</Typography>
+        <Typography variant="h5" component="h2">{'IMPACT SO FAR'}</Typography>
       </Paper>
       <Paper elevation={0}>
-        { ANALYTICS.map(analytic => this.renderAnalytic(analytic)) }
+        <Grid container spacing={0}>
+          { ANALYTICS.map(analytic => this.renderAnalytic(analytic)) }
+        </Grid>
       </Paper>
       </>
     );

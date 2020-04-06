@@ -1,11 +1,15 @@
 import React from 'react';
-import { Paper, withStyles, Typography, Button } from '@material-ui/core';
-
-import Spacer from '../../../components/Spacer';
+import { Paper, withStyles, Typography, Button, Grid, Link } from '@material-ui/core';
 
 const styles = theme => ({
   container: {
     padding: theme.spacing(2),
+  },
+  ctaContainer: {
+    flexDirection: 'column',
+    [theme.breakpoints.up('lg')]: {
+      flexDirection: 'row'
+    },
   },
   CTAbtns: {
     width: '100%',
@@ -24,9 +28,20 @@ class MainCTABtns extends React.Component {
         <br />
         <Typography variant="body1">{'Our on-ground volunteers try to make sure that they have access to food and verify people’s requests.'}</Typography>
         <br />
-        <Button className={classes.CTAbtns} variant="contained" color="primary">{'KNOW SOMEONE WHO NEEDS FOOD?'}</Button>
-        <Spacer height={theme.spacing(1)} />
-        <Button className={classes.CTAbtns} variant="contained" color="primary">{'DO YOU WANT TO DONATE?'}</Button>
+        <Grid container spacing={2}>
+          <Grid item xs={0} md={0} lg={1} />
+          <Grid item xs={12} md={12} lg={5}>
+            <Link href="/enablerLanding">
+              <Button className={classes.CTAbtns} variant="contained" color="primary">{'KNOW SOMEONE WHO NEEDS FOOD?'}</Button>
+            </Link>
+          </Grid>
+          <Grid item xs={12} md={12} lg={5}>
+            <Link href="/peopleInNeed">
+              <Button className={classes.CTAbtns} variant="contained" color="primary">{'DO YOU WANT TO DONATE?'}</Button>
+            </Link>
+          </Grid>
+          <Grid item xs={0} md={0} lg={1} />
+        </Grid>
       </Paper>
     );
   }
