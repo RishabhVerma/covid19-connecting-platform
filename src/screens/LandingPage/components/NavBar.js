@@ -14,7 +14,8 @@ const styles = theme => ({
     padding: theme.spacing(2),
   },
   logo: {
-    width: 300
+    width: 300,
+    height: 25,
   },
 });
 

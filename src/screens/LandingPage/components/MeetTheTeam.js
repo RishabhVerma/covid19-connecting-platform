@@ -40,15 +40,21 @@ const TEAM = [
   },
   {
     id: 3,
-    name: 'Ishita Roy',
-    title: 'Project Manager, Outlook RT',
-    initials: 'IR',
-  },
-  {
-    id: 4,
     name: 'Rishabh Verma',
     title: 'Co-Founder, NavGurukul',
     initials: 'RV',
+  },
+  {
+    id: 4,
+    name: 'Ghufran Siddiqui',
+    title: 'Founder, Awadh People Forum',
+    initials: 'GS',
+  },
+  {
+    id: 5,
+    name: 'Tausif',
+    title: 'Founder, Hunar ki Paathshaala',
+    initials: 'T  '
   }
 ];
 

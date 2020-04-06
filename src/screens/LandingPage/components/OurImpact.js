@@ -33,28 +33,28 @@ const ANALYTICS = [
   {
     "id": 1,
     "background": "#ffce00",
-    "highlight": "6500+",
+    "highlight": "6000+",
     "text1": "Families",
     "text2": "helped."
   },
   {
     "id": 2,
     "background": "#f7dd70",
-    "highlight": "1lac kgs",
-    "text1": "Ration including atta, rice",
-    "text2": "delivered till date."
+    "highlight": "1lac+ kg",
+    "text1": "atta, rice, oil, salt",
+    "text2": " and masala delivered."
   },
   {
     "id": 3,
     "background": "#ffce00",
-    "highlight": "3",
-    "text1": "Working in 3 states.",
-    "text2": "Delhi, Haryana, UP & MP"
+    "highlight": "5",
+    "text1": "Operational in Delhi,",
+    "text2": "Assam, Haryana, UP & MP"
   },
   {
     "id": 4,
     "background": "#f7dd70",
-    "highlight": "150+",
+    "highlight": "100+",
     "text1": "Volunteers",
     "text2": "working on ground."
   },
