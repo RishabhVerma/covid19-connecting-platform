@@ -29,7 +29,7 @@ class MainCTABtns extends React.Component {
         <Typography variant="body1">{'Our on-ground volunteers try to make sure that they have access to food and verify people’s requests.'}</Typography>
         <br />
         <Grid container spacing={2}>
-          <Grid item xs={0} md={0} lg={1} />
+          <Grid item lg={1} />
           <Grid item xs={12} md={12} lg={5}>
             <Link href="/enablerLanding">
               <Button className={classes.CTAbtns} variant="contained" color="primary">{'KNOW SOMEONE WHO NEEDS FOOD?'}</Button>
@@ -40,7 +40,7 @@ class MainCTABtns extends React.Component {
               <Button className={classes.CTAbtns} variant="contained" color="primary">{'DO YOU WANT TO DONATE?'}</Button>
             </Link>
           </Grid>
-          <Grid item xs={0} md={0} lg={1} />
+          <Grid item lg={1} />
         </Grid>
       </Paper>
     );

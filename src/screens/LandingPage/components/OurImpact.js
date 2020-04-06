@@ -65,8 +65,8 @@ class OurImpact extends React.Component {
   renderAnalytic(analytic) {
     const { classes } = this.props;
     return (
-      <Grid item xs={12} md={12} lg={6}>
-        <Box key={analytic.id} className={classes.analyticContainer} style={{ background: analytic.background }}>
+      <Grid item xs={12} md={12} lg={6} key={analytic.id}>
+        <Box className={classes.analyticContainer} style={{ background: analytic.background }}>
           <Box className={classes.analyticNumberContainer}>
             <Typography variant="h5" component="h4" className={classes.analyticNumber}>{analytic.highlight}</Typography>
           </Box>

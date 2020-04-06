@@ -32,7 +32,7 @@ export class LandingPage extends React.Component {
       <>
         <NavBar />
         <Carousel />
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" style={{ padding: 0 }}>
           <SmallDescription />
           <MainCTABtns />
           <OurImpact />
