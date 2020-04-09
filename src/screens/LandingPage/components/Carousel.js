@@ -13,7 +13,7 @@ const styles = theme => ({
     width: '100%',
     height: 280,
     [theme.breakpoints.up('lg')]: {
-      height: 370,
+      height: 420,
     },
     backgroundPosition: 'center center',
     backgroundSize: 'cover',

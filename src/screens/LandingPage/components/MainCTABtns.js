@@ -24,7 +24,7 @@ class MainCTABtns extends React.Component {
       <Paper elevation={0} className={classes.container}>
         <Typography variant="h5" component="h2">{'HELP US. HELP THEM.'}</Typography>
         <br />
-        <Typography variant="body1">{'We are trying to mobilise funds to buy essentials like food and ration for them to stay alive. We are crowdsourcing a list of all requests, verifying it and connecting them to folks like YOU. '}</Typography>
+        <Typography variant="body1">{'We are trying to identify and locate people in need and mobilise funds to buy essentials like food and ration for them to stay alive. We are crowdsourcing a list of all requests, verifying it and connecting them to folks like YOU. '}</Typography>
         <br />
         <Typography variant="body1">{'Our on-ground volunteers try to make sure that they have access to food and verify people’s requests.'}</Typography>
         <br />

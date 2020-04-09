@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, Paper, Typography, Avatar, Box, Button } from '@material-ui/core';
+import { withStyles, Paper, Typography, Avatar, Box, Button, Link } from '@material-ui/core';
 
 const styles = theme => ({
   container: {
@@ -16,7 +16,9 @@ class Donate extends React.Component {
         <br />
         <Typography variant="body1">{'You can reach out directly to the people you will be helping or donate and we will make sure that it reaches them. We have helped about 400 families till now and over thousands await. All help in terms of money and labour is welcome and needed desperately.'}</Typography>
         <br />
-        <Button variant="contained" color="primary" style={{ background: '#000' }}>{'DONATE NOW'}</Button>
+        <Link href="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA">
+          <Button variant="contained" color="primary" style={{ background: '#000' }}>{'DONATE NOW'}</Button>
+        </Link>
       </Paper>
     );
   }
