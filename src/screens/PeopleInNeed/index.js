@@ -180,8 +180,10 @@ class PeopleInNeed extends React.Component {
             {'We are building a publicly available list for you to connect directly with those in need. Below is a list of families who need direct support, if you are located nearby and interested in directly supporting. Contact the numbers below directly! '}
           </Typography>
           <br />
-          <Typography variant="body1" align="justify" style={{fontWeight: 900}}>
-            {'*List is in development and will be updated soon to reflect the growing number of families in need*'}
+          <Typography variant="body1" align="justify">
+            <em>
+              {'List is in development and will be updated soon to reflect the growing number of families in need'}
+            </em>
           </Typography>
           <br />
           {/* <FormControl variant="outlined" className={classes.formControl}>

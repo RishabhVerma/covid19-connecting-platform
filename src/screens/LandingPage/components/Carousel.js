@@ -11,11 +11,10 @@ import CarouselSlide2 from '../../../assets/img/carousel/slide2.jpg';
 const styles = theme => ({
   slideContainer: {
     width: '100%',
-    height: 280,
+    height: 350,
     [theme.breakpoints.up('lg')]: {
       height: 420,
     },
-    backgroundPosition: 'center center',
     backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
@@ -33,7 +32,7 @@ const styles = theme => ({
     [theme.breakpoints.up('lg')]: {
       fontSize: 28,
     },
-    fontSize: 20,
+    fontSize: 18,
     color: '#ffffff'
   },
   slideNavBtnContainer: {
@@ -51,13 +50,15 @@ const styles = theme => ({
 const SLIDES = [
   {
     "id": 1,
-    "text": "Manika Didi sells fish at the market. Market is closed now and so is her income.",
+    "text": "Manika didi sells fish at the market .The market is closed now and so is her access to livelihood.",
     "img": CarouselSlide1,
+    "bgPosition": 'center center',
   },
   {
     "id": 2,
-    "text": "Roshni didi makes jhadus and sells it in Delhi. Her household runs on her everyday wage She has none now.",
-    "img": CarouselSlide2
+    "text": "Roshni didi makes jhadus and sells it in Delhi. Her household runs on her everyday wage. She has none now.",
+    "img": CarouselSlide2,
+    "bgPosition": '10% 30%',
   }
 ];
 
@@ -92,7 +93,10 @@ class CarouselSlider extends React.Component {
     const { classes } = this.props;
     return (
       <Box key={slide.id}>
-        <Box className={classes.slideContainer} style={{ backgroundImage: `url(${slide.img})` }}>
+        <Box className={classes.slideContainer} style={{
+          backgroundImage: `url(${slide.img})`,
+          backgroundPosition: slide.bgPosition
+        }}>
           <Box className={classes.slideTextContainer}>
             <Typography variant="body1" className={classes.slideText}>{slide.text}</Typography>
           </Box>

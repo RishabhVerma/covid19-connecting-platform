@@ -3,7 +3,6 @@ import { Paper, withStyles, Typography, Box, Grid } from '@material-ui/core';
 
 const styles = theme => ({
   container: {
-    backgroundColor: '#e8e8e8de',
     padding: theme.spacing(2),
   },
   analyticContainer: {
@@ -13,11 +12,13 @@ const styles = theme => ({
     height: 80,
   },
   analyticNumberContainer: {
-    width: 120,
-    marginLeft: theme.spacing(2),
+    width: 130,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    [theme.breakpoints.up('md')]: {
+      alignItems: 'center'
+    }
   },
   analyticNumber: {
     fontWeight: 500,
@@ -33,30 +34,26 @@ const ANALYTICS = [
   {
     "id": 1,
     "background": "#ffce00",
-    "highlight": "6000+",
-    "text1": "Families",
-    "text2": "helped."
+    "highlight": "10,000+",
+    "text1": "Families helped.",
   },
   {
     "id": 2,
     "background": "#f7dd70",
-    "highlight": "1lac+ kg",
-    "text1": "atta, rice, oil, salt",
-    "text2": " and masala delivered."
+    "highlight": "1lac kg",
+    "text1": "Ration and hygiene products delivered.",
   },
   {
     "id": 3,
     "background": "#ffce00",
-    "highlight": "5",
-    "text1": "Operational in Delhi,",
-    "text2": "Assam, Haryana, UP & MP"
+    "highlight": "4",
+    "text1": "Operational in Delhi, Assam, UP & MP",
   },
   {
     "id": 4,
     "background": "#f7dd70",
     "highlight": "100+",
-    "text1": "Volunteers",
-    "text2": "working on ground."
+    "text1": "Volunteers working on ground.",
   },
 ];
 
@@ -65,14 +62,15 @@ class OurImpact extends React.Component {
   renderAnalytic(analytic) {
     const { classes } = this.props;
     return (
-      <Grid item xs={12} md={12} lg={6} key={analytic.id}>
+      <Grid item xs={12} md={6} lg={3} key={analytic.id}>
         <Box className={classes.analyticContainer} style={{ background: analytic.background }}>
           <Box className={classes.analyticNumberContainer}>
             <Typography variant="h5" component="h4" className={classes.analyticNumber}>{analytic.highlight}</Typography>
           </Box>
           <Box className={classes.analyticDescriptionContainer}>
-            <Typography variant="body1">{analytic.text1}</Typography>
-            <Typography variant="body1">{analytic.text2}</Typography>
+            <Typography variant="body1">
+              {analytic.text1}
+            </Typography>
           </Box>
         </Box>
       </Grid>
@@ -84,7 +82,7 @@ class OurImpact extends React.Component {
     return (
       <>
       <Paper elevation={0} className={classes.container}>
-        <Typography variant="h5" component="h2">{'IMPACT SO FAR'}</Typography>
+        <Typography variant="h5" component="h2" style={{ fontWeight: 600 }}>{'IMPACT SO FAR'}</Typography>
       </Paper>
       <Paper elevation={0}>
         <Grid container spacing={0}>

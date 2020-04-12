@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, AppBar, Box } from '@material-ui/core';
+import { withStyles, AppBar, Box, Link } from '@material-ui/core';
 
 import IACLogo from '../../../assets/img/logo.png'
 
@@ -23,9 +23,11 @@ class NavBar extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <AppBar position="sticky" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Box className={classes.logoContainer}>
-          <img src={IACLogo} className={classes.logo} />
+          <Link href="/#">
+            <img src={IACLogo} className={classes.logo} />
+          </Link>
         </Box>
       </AppBar>
     );
