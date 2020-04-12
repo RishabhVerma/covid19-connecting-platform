@@ -24,7 +24,7 @@ const styles = theme => ({
   },
   slideTextContainer: {
     [theme.breakpoints.up('lg')]: {
-      width: '15%',
+      width: '20%',
     },
     width: '60%',
     padding: theme.spacing(2)

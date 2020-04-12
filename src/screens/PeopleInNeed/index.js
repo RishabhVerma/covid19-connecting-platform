@@ -1,6 +1,6 @@
 import React from 'react';
 import HowItWorksBlock from '../../components/HowItWorksBlock'
-import { withStyles, Box, Typography, Chip } from '@material-ui/core';
+import { withStyles, Box, Typography, Chip, Container } from '@material-ui/core';
 import Spacer from '../../components/Spacer';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -19,6 +19,9 @@ import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 
 import axios from 'axios';
+
+import NavBar from '../LandingPage/components/NavBar';
+import ExplainerBlock from '../../components/ExplainerBlock';
 
 const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coronaIndia/masterData';
 
@@ -166,24 +169,21 @@ class PeopleInNeed extends React.Component {
     const { selectedState, beneficariesLoading, beneficaries } = this.state;
     return (
       <>
-        <HowItWorksBlock />
+        <NavBar />
+        <ExplainerBlock />
+        <Container maxWidth="lg" style={{ padding: 0 }}>
         <Box className={classes.container}>
           <Spacer height={theme.spacing(2)} />
-          <Typography variant="h3">HELP US, HELP THEM</Typography>
-          <Spacer height={theme.spacing(1)} />
-          <Typography variant="body1" align="justify">{'We have a team of volunteers and social activists working relentlessly in and around Delhi and UP to deliver essentials to stranded(due to lockdown) migrant workers or residents of densely packed slums or another word for underserved. We have helped about 120 families till now and over thousands await. All help in terms of money and labour is welcome and needed desperately.'}</Typography>
+          <Typography variant="h3">Connect Directly with Those in Need</Typography>
           <br />
-          <Typography variant="body1" align="justify" style={{fontWeight: 900}}>
-            {'We are working on building this web page which will show you a list of all people who need help in the areas we are working in. Currently you can see a list of few such people who need help. We are working on verifying the data and showing you a complete list in a few days.'}
+          <Typography variant="body1">
+            {'We are building a publicly available list for you to connect directly with those in need. Below is a list of families who need direct support, if you are located nearby and interested in directly supporting. Contact the numbers below directly! '}
           </Typography>
           <br />
-          <Typography variant="body1">{'For volunteering on-ground, please call 899765210.'}</Typography>
+          <Typography variant="body1" align="justify" style={{fontWeight: 900}}>
+            {'*List is in development and will be updated soon to reflect the growing number of families in need*'}
+          </Typography>
           <br />
-          {/* <Typography variant="body1">{'To donate funds directly to beneficiaries, please browse through this crowd-sourced and further verified by our team.'}</Typography>
-          <Typography variant="body1">{'You can also just donate money to us. We are in the process of setting up an on online page to collect payments. Till then you can get in touch with us directly on the number given above.'}</Typography>
-          <Spacer height={theme.spacing(1)} />
-          <Typography variant="body1">{'Here is a list of all the people who need help. You can filter the list by state using the dropdown below.'}</Typography>
-          <Spacer height={theme.spacing(2)} /> */}
           {/* <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel id="state-filter-label">State</InputLabel>
             <Select
@@ -204,6 +204,7 @@ class PeopleInNeed extends React.Component {
           <Spacer height={theme.spacing(2)} />
 
         </Box>
+        </Container>
       </>
     );
   }
