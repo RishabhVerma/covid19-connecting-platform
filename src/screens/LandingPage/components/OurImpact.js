@@ -8,7 +8,7 @@ const styles = theme => ({
   analyticContainer: {
     background: '#ffce00',
     display: 'flex',
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     height: 80,
   },
   analyticNumberContainer: {
@@ -40,7 +40,7 @@ const ANALYTICS = [
   {
     "id": 2,
     "background": "#f7dd70",
-    "highlight": "1lac kg",
+    "highlight": "100,000+",
     "text1": "Ration and hygiene products delivered.",
   },
   {
