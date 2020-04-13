@@ -55,8 +55,8 @@ class MainCTABtns extends React.Component {
                   {'Donate directly to the link below, providing a 2-week supply of emergency food and hygiene products for a family of 4.'}
                 </Typography>
               </Box>
-              <Link href="/peopleInNeed">
-                <Button className={classes.CTAbtns} variant="contained" color="primary">{'HAVE FUNDS TO SUPPORT?'}</Button>
+              <Link href="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA">
+                <Button className={classes.CTAbtns} variant="contained" color="primary">{'DONATE NOW?'}</Button>
               </Link>
             </Paper>
           </Grid>
