@@ -23,6 +23,8 @@ import axios from 'axios';
 import NavBar from '../LandingPage/components/NavBar';
 import ExplainerBlock from '../../components/ExplainerBlock';
 
+import ReactGA from 'react-ga';
+
 const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coronaIndia/masterData';
 
 const styles = theme => ({
@@ -68,6 +70,10 @@ class PeopleInNeed extends React.Component {
   }
 
   async componentDidMount() {
+
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
+
     this.setState({ beneficariesLoading: true });
     const response = await axios.get(API_URL);
     const beneficiaries = response.data.masterData;

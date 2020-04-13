@@ -133,7 +133,7 @@ class MeetTheTeam extends React.Component {
             <Typography variant="body2">{member.org}</Typography>
           </Box>
           <Box className={classes.memberDetailsContainer}>
-            <Typography variant="body2" align="">{member.bio}</Typography>
+            <Typography variant="body2">{member.bio}</Typography>
           </Box>
         </Box>
       </Grid>

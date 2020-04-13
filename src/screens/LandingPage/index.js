@@ -26,6 +26,12 @@ const styles = theme => ({
 });
 
 export class LandingPage extends React.Component {
+
+  componentDidMount() {
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
+  }
+
   render() {
     const { classes, theme } = this.props;
     return (

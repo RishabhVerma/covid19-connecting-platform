@@ -27,6 +27,8 @@ class EnablerLandingPage extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleWindowResize);
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
   }
 
   componentWillUnmount() {
@@ -50,7 +52,7 @@ class EnablerLandingPage extends React.Component {
         <Container maxWidth="lg" style={{ padding: 0 }}>
         <Box className={classes.container}>
             <Spacer height={theme.spacing(2)} />
-            <Typography variant="body1">{'Fill out the form below, letting us know of families and individuals in need in your community!'}</Typography>
+            <Typography variant="body1">{'Fill out the form below, letting us know of families and individuals in need in your community. We are currently only operating in 4 states - Delhi, UP, MP & Assam.'}</Typography>
             <br />
             <iframe frameBorder="0" width={formWidth} style={{height:1000, width: '100%', border:'none'}} src='https://forms.zohopublic.com/r16/form/Covid19/formperma/auewDSXzVKv_zf2OWR6yK9YDLOrnRVZZ5o89sZuEHLw'></iframe>
         </Box>

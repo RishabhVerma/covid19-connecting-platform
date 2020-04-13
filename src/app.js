@@ -10,6 +10,9 @@ import configureStore from './store/config/configureStore';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-163486743-1');
+
 
 const store = configureStore();
 
