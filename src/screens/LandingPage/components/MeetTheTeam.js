@@ -102,7 +102,7 @@ const TEAM = [
     title: 'Second Chance Fellow',
     org: 'Project Second Chance',
     img: GauriImage,
-    bgColor: '#e8e8e8de',
+    bgColor: '#fff',
     bio: 'A TISS graduate with her Phd thesis in Prison Reformation at DSSC, Gauri’s help in research and report writing with a team of volunteers is very appreciated.'
   },
   {
@@ -111,7 +111,7 @@ const TEAM = [
     title: 'Intern',
     org: 'MasterCard India',
     img: ShobhitImage,
-    bgColor: '#fff',
+    bgColor: '#e8e8e8de',
     bio: 'After SRCC and IIM-L, we are very grateful for his analytical skills handling all backend data management at IAC.',
   }
 ];
