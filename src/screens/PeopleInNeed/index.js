@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import HowItWorksBlock from '../../components/HowItWorksBlock'
 import { withStyles, Box, Typography, Chip, Container } from '@material-ui/core';
 import Spacer from '../../components/Spacer';
@@ -23,7 +24,6 @@ import axios from 'axios';
 import NavBar from '../LandingPage/components/NavBar';
 import ExplainerBlock from '../../components/ExplainerBlock';
 
-import ReactGA from 'react-ga';
 
 const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coronaIndia/masterData';
 
