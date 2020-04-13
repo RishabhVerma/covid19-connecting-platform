@@ -1,16 +1,36 @@
 import React from 'react';
 
-import { Box, withStyles, Button, Typography, Paper, Container, Link } from '@material-ui/core';
+import { Box, withStyles, Button, Typography, Paper, Container, Link, Grid } from '@material-ui/core';
 
-const styles = theme => ({});
+const styles = theme => ({
+  textContainer: {
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: theme.spacing(2),
+    }
+  }
+});
 
 class ExplainerBlock extends React.Component {
   render() { 
-    const { theme } = this.props;
+    const { theme, classes } = this.props;
     return (
       <Container maxWidth="lg" style={{ padding: 0, marginTop: 64 }}>
-      <Paper elevation={0} style={{ padding: theme.spacing(2), backgroundColor: '#e8e8e8de' }}>
-        <Typography variant="h4">{'A Community Initiative'}</Typography>
+      <Paper elevation={0} style={{ padding: theme.spacing(4), backgroundColor: '#e8e8e8de' }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} lg={4} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Link href="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA" style={{ width: '70%' }}>
+              <Button size="large" variant="contained" color="primary" style={{ backgroundColor: '#000', width: '100%' }}>Donate Now</Button>
+            </Link>
+          </Grid>
+          <Grid item xs={12} lg={8}>
+            <Box className={classes.textContainer}>
+              <Typography variant="h5" align="center" style={{ fontWeight: 500 }}>{'700INR provides a family with 2 week supply of food & essentials.'}</Typography>
+              <br />
+              <Typography variant="body1" align="center" style={{ fontSize: '1.2rem' }}>{'Support families in need across Delhi, UP, MP and Assam'}</Typography>
+            </Box>
+          </Grid>
+        </Grid>
+        {/* <Typography variant="h4">{'A Community Initiative'}</Typography>
         <br />
         <Typography variant="body1">
           <strong>{'The plight of migrant workers is becoming more dire as shortage of rations increase. '}</strong>
@@ -21,7 +41,7 @@ class ExplainerBlock extends React.Component {
         <br />
         <Link href="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA">
           <Button variant="contained" color="primary" style={{backgroundColor: '#000', width: 300}}>Donate Now</Button>
-        </Link>
+        </Link> */}
       </Paper>
       </Container>
     );

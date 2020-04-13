@@ -50,7 +50,7 @@ const styles = theme => ({
 const SLIDES = [
   {
     "id": 1,
-    "text": "Manika didi sells fish at the market .The market is closed now and so is her access to livelihood.",
+    "text": "Manika didi sells fish at the market. The market is closed now and so is her access to livelihood.",
     "img": CarouselSlide1,
     "bgPosition": 'center center',
   },

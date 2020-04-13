@@ -13,7 +13,7 @@ const styles = theme => ({
   },
   CTAbtns: {
     width: '100%',
-    backgroundColor: '#545454',
+    backgroundColor: '#000',
   },
   ctaBtnContainer: {
     backgroundColor: '#e8e8e8de',
@@ -55,8 +55,10 @@ class MainCTABtns extends React.Component {
                   {'Donate directly to the link below, providing a 2-week supply of emergency food and hygiene products for a family of 4.'}
                 </Typography>
               </Box>
-              <Link href="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA">
-                <Button className={classes.CTAbtns} variant="contained" color="primary">{'DONATE NOW?'}</Button>
+              <Link href="/peopleInNeed">
+                <Button className={classes.CTAbtns} variant="contained" color="primary">
+                  {'DONATE NOW!'}
+                </Button>
               </Link>
             </Paper>
           </Grid>

@@ -180,7 +180,13 @@ class PeopleInNeed extends React.Component {
         <Container maxWidth="lg" style={{ padding: 0 }}>
         <Box className={classes.container}>
           <Spacer height={theme.spacing(2)} />
-          <Typography variant="h4" component="h1">Connect Directly with Those in Need</Typography>
+          <Typography variant="h4" component="h1">Transparency  Matters</Typography>
+          <br />
+          <Typography variant="body1">
+            <strong>
+              {'View and connect with our crowdsources in-need beneficiaries.'}
+            </strong>
+          </Typography>
           <br />
           <Typography variant="body1">
             {'We are building a publicly available list for you to connect directly with those in need. Below is a list of families who need direct support, if you are located nearby and interested in directly supporting. Contact the numbers below directly! '}

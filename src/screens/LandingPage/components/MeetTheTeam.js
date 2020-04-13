@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles, Paper, Typography, Avatar, Box, Grid } from '@material-ui/core';
+import { shuffle } from 'underscore';
 
 import Spacer from '../../../components/Spacer';
 
@@ -11,8 +12,6 @@ import SanchiImage from '../../../assets/img/team/sanchi.jpg';
 import ShobhitImage from '../../../assets/img/team/shobhit.jpg';
 import TabishImage from '../../../assets/img/team/tabish.jpg';
 import GhufranImage from '../../../assets/img/team/ghufran.jpg';
-
-
 
 
 const styles = theme => ({
@@ -57,7 +56,7 @@ const TEAM = [
     org: 'TYCIA',
     img: SanchiImage,
     bgColor: '#e8e8e8de',
-    bio: 'Post her MBA in Finance & B.ED, she co-founded TYCIA. With IAC, Sanchi is handling Finance and auditing.',
+    bio: 'An entrepreneur, a crusader of gender equality with IAC, Saanchi is managing resources.',
   },
   {
     id: 2,
@@ -103,7 +102,7 @@ const TEAM = [
     org: 'Project Second Chance',
     img: GauriImage,
     bgColor: '#fff',
-    bio: 'A TISS graduate with her Phd thesis in Prison Reformation at DSSC, Gauri’s help in research and report writing with a team of volunteers is very appreciated.'
+    bio: 'A TISS graduate with her Phd thesis in rehabilitation of prisoners at DSSW. Gauri’s help in research and report writing with a team of volunteers in appreciated.'
   },
   {
     id: 8,
@@ -117,10 +116,11 @@ const TEAM = [
 ];
 
 class MeetTheTeam extends React.Component {
-  renderMember(member) {
-    const { classes, theme } = this.props;
+  renderMember(member, index) {
+    const { classes } = this.props;
+    const bgColor = index % 2 == 0 ? '#e8e8e8de' : '#fff';
     return (
-      <Grid item xs={12} md={6} lg={3} style={{ backgroundColor: member.bgColor, borderBottom: '1px solid #bdbdbd', }} key={member.id}>
+      <Grid item xs={12} md={6} lg={3} style={{ backgroundColor: bgColor, borderBottom: '1px solid #bdbdbd', }} key={member.id}>
         <Box className={classes.memberTile}>
           { member.img !== undefined ? (
             <Avatar src={member.img} className={classes.memberPhoto} alt={member.name} />
@@ -142,6 +142,7 @@ class MeetTheTeam extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
+    const team = shuffle(TEAM);
     return (
       <>
       <Paper elevation={0} className={classes.container}>
@@ -149,7 +150,7 @@ class MeetTheTeam extends React.Component {
         <Spacer height={theme.spacing(2)} />
       </Paper>
       <Grid container>
-        { TEAM.map(member => this.renderMember(member)) }
+        { team.map((member, index) => this.renderMember(member, index)) }
       </Grid>
       </>
     );
