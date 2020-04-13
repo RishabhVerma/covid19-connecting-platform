@@ -13,8 +13,12 @@ const styles = theme => ({
   },
   CTAbtns: {
     width: '100%',
-    backgroundColor: '#000000',
-  }
+    backgroundColor: '#545454',
+  },
+  ctaBtnContainer: {
+    backgroundColor: '#e8e8e8de',
+    padding: theme.spacing(1),
+  },
 });
 
 class MainCTABtns extends React.Component {
@@ -31,28 +35,32 @@ class MainCTABtns extends React.Component {
         <Typography variant="body1">{'Our initiative is unique because of our crowdsourced beneficiary list, you join the community effort, too You can help in two ways.'}</Typography> 
         <br />
         <Grid container spacing={2}>
-          <Grid item lg={2} />
-          <Grid item xs={12} md={12} lg={4}>
-            <Link href="/enablerLanding">
-              <Button className={classes.CTAbtns} variant="contained" color="primary">{'KNOW SOMEONE WHO NEEDS FOOD?'}</Button>
-            </Link>
-            <Box style={{ textAlign: 'center' }}>
-              <Typography variant="body1" style={{ fontSize: '0.85rem' }}>
+          <Grid item lg={1} />
+          <Grid item xs={12} md={12} lg={5}>
+            <Paper elevation={0} className={classes.ctaBtnContainer}>
+            <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
+              <Typography variant="body1" style={{ fontSize: '1rem' }}>
                 {'Fill out the form below, letting us know of families and individuals in need in your community!'}
               </Typography>
             </Box>
-          </Grid>
-          <Grid item xs={12} md={12} lg={4}>
-            <Link href="/peopleInNeed">
-              <Button className={classes.CTAbtns} variant="contained" color="primary">{'HAVE FUNDS TO SUPPORT?'}</Button>
+            <Link href="/enablerLanding">
+              <Button className={classes.CTAbtns} variant="contained" color="primary">{'KNOW SOMEONE WHO NEEDS FOOD?'}</Button>
             </Link>
-            <Box style={{ textAlign: 'center' }}>
-              <Typography variant="body1" style={{ fontSize: '0.85rem' }}>
-                {'Donate directly to the link below, providing a 2-week supply of emergency food and hygiene products for a family of 4.'}
-              </Typography>
-            </Box>
+            </Paper>
           </Grid>
-          <Grid item lg={2} />
+          <Grid item xs={12} md={12} lg={5}>
+            <Paper elevation={0} className={classes.ctaBtnContainer}>
+              <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
+                <Typography variant="body1" style={{ fontSize: '1rem' }}>
+                  {'Donate directly to the link below, providing a 2-week supply of emergency food and hygiene products for a family of 4.'}
+                </Typography>
+              </Box>
+              <Link href="/peopleInNeed">
+                <Button className={classes.CTAbtns} variant="contained" color="primary">{'HAVE FUNDS TO SUPPORT?'}</Button>
+              </Link>
+            </Paper>
+          </Grid>
+          <Grid item lg={1} />
         </Grid>
         <br />
         <Typography variant="body1">Interested in volunteering? Contact us to become an on-ground enabler, to package and deliver emergency kits to those in need! <strong>Call 899765210.</strong></Typography>
