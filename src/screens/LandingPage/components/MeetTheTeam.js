@@ -42,6 +42,15 @@ const styles = theme => ({
 
 const TEAM = [
   {
+    id: 6,
+    name: 'Mohit',
+    title: 'Co-founder',
+    org: 'TYCIA',
+    img: MohitImage,
+    bgColor: '#fff',
+    bio: 'An ex-Clinton fellow and a Jamia alum, co-founded TYCIA whilst working on child rights of migrant workers based in Delhi. Mohit is juggling between Project Management and Fundraising and on-ground help in IAC.',
+  },
+  {
     id: 1,
     name: 'Sanchi',
     title: 'Co-founder',
@@ -88,15 +97,6 @@ const TEAM = [
     bio: 'Backbone of all operations at IAC, he is a veteran at running grassroot movements and initiatives with experience spanning 20+ years!'
   },
   {
-    id: 6,
-    name: 'Mohit',
-    title: 'Co-founder',
-    org: 'TYCIA',
-    img: MohitImage,
-    bgColor: '#fff',
-    bio: 'An ex-Clinton fellow and a Jamia alum, co-founded TYCIA whilst working on child rights of migrant workers based in Delhi. Mohit is juggling between Project Management and Fundraising and on-ground help in IAC.',
-  },
-  {
     id: 7,
     name: 'Gauri',
     title: 'Second Chance Fellow',
@@ -120,7 +120,7 @@ class MeetTheTeam extends React.Component {
   renderMember(member) {
     const { classes, theme } = this.props;
     return (
-      <Grid item xs={12} lg={3} style={{ backgroundColor: member.bgColor, borderBottom: '1px solid #bdbdbd', }} key={member.id}>
+      <Grid item xs={12} md={6} lg={3} style={{ backgroundColor: member.bgColor, borderBottom: '1px solid #bdbdbd', }} key={member.id}>
         <Box className={classes.memberTile}>
           { member.img !== undefined ? (
             <Avatar src={member.img} className={classes.memberPhoto} alt={member.name} />
@@ -133,7 +133,7 @@ class MeetTheTeam extends React.Component {
             <Typography variant="body2">{member.org}</Typography>
           </Box>
           <Box className={classes.memberDetailsContainer}>
-            <Typography variant="body2" align="justify">{member.bio}</Typography>
+            <Typography variant="body2" align="">{member.bio}</Typography>
           </Box>
         </Box>
       </Grid>
