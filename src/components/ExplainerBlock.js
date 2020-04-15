@@ -24,7 +24,7 @@ class ExplainerBlock extends React.Component {
           </Grid>
           <Grid item xs={12} lg={8}>
             <Box className={classes.textContainer}>
-              <Typography variant="h5" align="center" style={{ fontWeight: 500 }}>{'700INR provides a family with 2 week supply of food & essentials.'}</Typography>
+              <Typography variant="h5" align="center" style={{ fontWeight: 500 }}>{'600INR provides a family with 2 week supply of food & essentials.'}</Typography>
               <br />
               <Typography variant="body1" align="center" style={{ fontSize: '1.2rem' }}>{'Support families in need across Delhi, UP, MP and Assam'}</Typography>
             </Box>
