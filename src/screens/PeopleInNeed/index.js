@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactGA from 'react-ga';
-import HowItWorksBlock from '../../components/HowItWorksBlock'
-import { withStyles, Box, Typography, Chip, Container } from '@material-ui/core';
+
+import { withStyles, Box, Typography, Chip, Container, Grid, Button } from '@material-ui/core';
 import Spacer from '../../components/Spacer';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -10,14 +10,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
+
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-
-import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 
 import axios from 'axios';
 
@@ -51,6 +46,9 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-end'
+  },
+  formControl: {
+    width: '100%',
   }
 });
 
@@ -194,26 +192,31 @@ class PeopleInNeed extends React.Component {
           <br />
           <Typography variant="body1" align="justify">
             <em>
-              {'List is in development and will be updated soon to reflect the growing number of families in need'}
+              {'You can filter by a particular state to see beneficiaries from one particular state.'}
             </em>
           </Typography>
           <br />
-          {/* <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="state-filter-label">State</InputLabel>
-            <Select
-              labelId="state-filter-label"
-              id="state-filter"
-              value={selectedState}
-              label="State"
-              onChange={this.setSelectedState}
-            >
-              <MenuItem value={'All States'}>All States</MenuItem>
-              <MenuItem value={'Haryana'}>Haryana</MenuItem>
-              <MenuItem value={'Delhi'}>Delhi</MenuItem>
-              <MenuItem value={'Uttar Pradesh'}>Uttar Pradesh</MenuItem>
-            </Select>
-          </FormControl>
-          <Spacer height={theme.spacing(2)} /> */}
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={9} lg={4}>
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="state-filter-label">State</InputLabel>
+                <Select
+                  labelId="state-filter-label"
+                  id="state-filter"
+                  value={selectedState}
+                  label="State"
+                  onChange={this.setSelectedState}
+                >
+                  <MenuItem value={'All States'}>All States</MenuItem>
+                  <MenuItem value={'Uttar Pradesh'}>Uttar Pradesh</MenuItem>
+                  <MenuItem value={'Delhi'}>Delhi</MenuItem>
+                  <MenuItem value={'Madhya Pradesh'}>Madhya Pradesh</MenuItem>
+                  <MenuItem value={'Maharashtra'}>Maharashtra</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+          <Spacer height={theme.spacing(2)} />
           { beneficariesLoading ? <Typography variant="body1">Loading...</Typography> : this.renderAllCards() }
           <Spacer height={theme.spacing(2)} />
 
