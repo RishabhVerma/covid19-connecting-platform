@@ -39,7 +39,7 @@ const styles = theme => ({
   },
   slideNavBtnContainer: {
     position: 'absolute',
-    bottom: theme.spacing(2),
+    bottom: theme.spacing(6),
     right: theme.spacing(1),
   },
   slideNavBtn: {
@@ -166,7 +166,7 @@ class OurImpact extends React.Component {
         backgroundPosition: 'center',
       }}>
         <Box>
-          <Typography style={{  }} variant="body1">{img.caption}</Typography>
+          <Typography style={{ color: '#fff' }} variant="body1">{img.caption}</Typography>
         </Box>
         <Box className={classes.slideNavBtnContainer} >
             <Fab onClick={this.handleLeftClick} className={classes.slideNavBtn}> <ChevronLeftIcon /> </Fab>
