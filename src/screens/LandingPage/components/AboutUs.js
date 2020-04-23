@@ -5,7 +5,6 @@ const styles = theme => ({
   container: {
     backgroundColor: '#e8e8e8de',
     padding: theme.spacing(2),
-    marginTop: theme.spacing(3),
   },
 });
 

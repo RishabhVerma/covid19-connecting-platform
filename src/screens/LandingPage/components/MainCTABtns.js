@@ -32,7 +32,7 @@ class MainCTABtns extends React.Component {
         <br />
         <Typography variant="body1">{'IAC is stepping up to identify and locate vulnerable people to provide emergency rations and hygiene products – this is a community initiative to connect supplies with those in need! We are actively working in 4 states, Delhi NCR, Uttar Pradesh, Madhya Pradesh, Assam!'}</Typography>
         <br />
-        <Typography variant="body1">{'Our initiative is unique because of our crowdsourced beneficiary list, you join the community effort, too You can help in two ways.'}</Typography> 
+        <Typography variant="body1">{'Our initiative is unique because of our crowdsourced beneficiary list, you join the community effort, too. You can help in two ways.'}</Typography> 
         <br />
         <Grid container spacing={2}>
           <Grid item lg={1} />

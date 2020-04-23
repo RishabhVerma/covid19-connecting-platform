@@ -65,7 +65,7 @@ const TEAM = [
     org: 'Asia PD Program',
     img: RohitImage,
     bgColor: '#fff',
-    bio: 'An IIT-G and IIM-Cal alum, he is a Manager at Renewable Energy Investment firm by day & turns into a fundraising and partnerships whiz by night for IAC.'
+    bio: 'An IIT-G and IIM-Cal alum, he is a manager at renewable energy investment firm by day & supports the fundraising and partnerships team by night for IAC.'
   },
 
   {
