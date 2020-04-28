@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { Box, withStyles, Button, Typography, Paper, Container, Link, Grid } from '@material-ui/core';
+import { Box, withStyles, Button, Typography, Paper, Container, Link, Grid} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+import { Modal } from 'antd'
+import 'antd/dist/antd.css'
 
 const styles = theme => ({
   textContainer: {
@@ -11,6 +15,32 @@ const styles = theme => ({
 });
 
 class ExplainerBlock extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      visible : false,
+    }
+  }
+
+  showModal = () => {
+    this.setState({
+      visible : true
+    })
+  }
+
+  handleOk = () => {
+    console.log("Clicked again")
+    this.setState({
+      visible : false,
+    })
+  }
+
+  handleCancel = () => {
+    this.setState({
+      visible : false
+    })
+  }
+
   render() { 
     const { theme, classes } = this.props;
     return (
@@ -18,9 +48,22 @@ class ExplainerBlock extends React.Component {
       <Paper elevation={0} style={{ padding: theme.spacing(4), backgroundColor: '#e8e8e8de' }}>
         <Grid container spacing={2}>
           <Grid item xs={12} lg={4} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Link href="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA" style={{ width: '70%' }}>
-              <Button size="large" variant="contained" color="primary" style={{ backgroundColor: '#000', width: '100%' }}>Donate Now</Button>
-            </Link>
+              <Button 
+                size="large" 
+                variant="contained" 
+                color="primary" 
+                style={{ backgroundColor: '#000', width: '100%' }}
+                onClick={this.showModal}
+              >
+                  Donate Now
+              </Button>
+              <Modal
+                title="Basic Modal"
+                visible={this.state.visible}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+              >
+              </Modal>
           </Grid>
           <Grid item xs={12} lg={8}>
             <Box className={classes.textContainer}>
