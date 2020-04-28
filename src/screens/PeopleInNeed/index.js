@@ -51,9 +51,13 @@ const styles = theme => ({
   formControl: {
     width: '100%',
   },
+  checkbox : {
+    position: 'relative',
+    right: '5px'
+  },
   fabButton: {
     margin: '5px',
-  }
+  },
 });
 
 class PeopleInNeed extends React.Component {
