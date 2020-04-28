@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 
-import { withStyles, Box, Typography, Chip, Container, Grid, Button } from '@material-ui/core';
+import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Fab, CircularProgress } from '@material-ui/core';
+import PersonIcon from '@material-ui/icons/Person';
 import Spacer from '../../components/Spacer';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -49,6 +50,9 @@ const styles = theme => ({
   },
   formControl: {
     width: '100%',
+  },
+  fabButton: {
+    margin: '5px',
   }
 });
 
@@ -60,11 +64,22 @@ class PeopleInNeed extends React.Component {
       selectedState: 'All States',
       beneficariesLoading: true,
       beneficaries: [],
+      selectedBeneficary : {}
     };
   }
 
   setSelectedState = (event) => {
     this.setState({ selectedState: event.target.value });
+  }
+
+  handleCheckboxSelect = (event) => {
+    let selectedBeneficary = this.state.beneficaries.filter((b)=>b.id==event.target.name)
+    selectedBeneficary[0].isChecked = event.target.checked
+    this.setState({
+      selectedBeneficary : selectedBeneficary
+    }, ()=>{
+      console.log(this.state.selectedBeneficary)
+    })
   }
 
   async componentDidMount() {
@@ -75,7 +90,13 @@ class PeopleInNeed extends React.Component {
     this.setState({ beneficariesLoading: true });
     const response = await axios.get(API_URL);
     const beneficiaries = response.data.masterData;
-    this.setState({ beneficariesLoading: false, beneficaries: beneficiaries });
+    let beneficiariesCopy = []; 
+    beneficiaries.forEach((b)=>{
+      let eachBeneficiary = Object.assign(b, { isChecked : false })
+      beneficiariesCopy.push(eachBeneficiary)
+    })
+    this.setState({ beneficariesLoading: false, beneficaries: beneficiariesCopy });
+    console.log(this.state.beneficaries)
   }
 
   handleBeneficaryCardToggle = (id) => {
@@ -104,6 +125,15 @@ class PeopleInNeed extends React.Component {
           <CardContent>
             <Box className={classes.cardTitle}>
               <Typography gutterBottom variant="h5" component="h2">{beneficary.name}</Typography>
+              <Checkbox
+                name={beneficary.id}
+                checked={beneficary.isChecked}
+                onChange={this.handleCheckboxSelect}
+                color="primary"
+                className={classes.checkbox}
+                // inputProps={{ 'aria-label': 'primary checkbox' }}
+              >
+              </Checkbox>
               <Chip
                 variant="outlined"
                 label={verified ? "Verified" : "Not Verified" }
@@ -171,6 +201,7 @@ class PeopleInNeed extends React.Component {
   render() {
     const { classes, theme  } = this.props;
     const { selectedState, beneficariesLoading, beneficaries } = this.state;
+    let count = 0;
     return (
       <>
         <NavBar />
@@ -216,10 +247,35 @@ class PeopleInNeed extends React.Component {
               </FormControl>
             </Grid>
           </Grid>
+          <Grid item xs={12} md={12} lg={12}>
+            {
+              beneficaries.map((b)=>{
+                if(b.isChecked==true){
+                  count+=1;
+                  return(
+                      <Fab key={b.id} size="small" variant="extended" color="primary" aria-label="add" className={classes.fabButton}>
+                        <PersonIcon />
+                        {' '}{b.name}
+                      </Fab>
+                  ) 
+                }
+              })
+            }
+            {
+              (count>0) &&
+              <Button 
+                size="small" 
+                variant="contained" 
+                color="primary" 
+                style={{ backgroundColor: '#000'}}
+              >
+                Donate Rs.{count*600}
+              </Button>
+            }
+          </Grid>
           <Spacer height={theme.spacing(2)} />
-          { beneficariesLoading ? <Typography variant="body1">Loading...</Typography> : this.renderAllCards() }
+          { beneficariesLoading ? <Grid><CircularProgress disableShrink/></Grid> : this.renderAllCards() }
           <Spacer height={theme.spacing(2)} />
-
         </Box>
         </Container>
       </>
