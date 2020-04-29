@@ -28,7 +28,7 @@ const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coron
 
 let hashSequence;
 
-hashSequence = "wu5IxsVg|202004272350334|200|Saquib|saquib18@navgurukul.org|udf1|udf2|udf3|udf4|udf5||||||UrnK28wI9Y";
+hashSequence = "ENTER_KEY|202004272350334|200|Saquib|saquib18@navgurukul.org|udf1|udf2|udf3|udf4|udf5||||||ENTER_SALT";
 sha.update(hashSequence)
 var hashKey = sha.getHash("HEX")
 
@@ -130,7 +130,7 @@ class PeopleInNeed extends React.Component {
 
   payUMoney = () => {
     var RequestData = {
-      key: 'wu5IxsVg',
+      key: 'ENTER_KEY',
       txnid: '202004272350334',
       hash: hashKey,
       amount: '200',
@@ -141,7 +141,14 @@ class PeopleInNeed extends React.Component {
       surl : 'https://sucess-url.in',
       furl: 'https://fail-url.in'
     }
-    window.bolt.launch(RequestData, {responseHandler : function(response){console.log(response.json())}}, {catchException : function(response){console.log(response.json())}})
+    window.bolt.launch(RequestData, 
+      {
+        responseHandler : function(response){console.log(response.json())}
+      }, 
+      {
+        catchException : function(response){console.log(response.json())}
+      }
+    )
   }
 
   renderCard(beneficary) {
