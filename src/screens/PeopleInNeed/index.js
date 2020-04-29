@@ -20,6 +20,8 @@ import axios from 'axios';
 import jsSHA from 'jssha';
 var sha = new jsSHA('SHA-512', "TEXT");
 
+import sha512 from 'js-sha512';
+
 import NavBar from '../LandingPage/components/NavBar';
 import ExplainerBlock from '../../components/ExplainerBlock';
 
@@ -130,17 +132,28 @@ class PeopleInNeed extends React.Component {
 
   payUMoney = () => {
     var RequestData = {
-      key: 'ENTER_KEY',
-      txnid: '202004272350334',
-      hash: hashKey,
+      key: 'wu5IxsVg',
+      txnid: 'xsuags798',
+      hash: 'hashKey',
       amount: '200',
       firstname: 'Saquib',
       email: 'saquib18@navgurukul.org',
-      phone: '6111111111',
-      productinfo: 'Bag',
-      surl : 'https://sucess-url.in',
-      furl: 'https://fail-url.in'
-    }
+      phone: '8130378953',
+      productinfo: 'Donation',
+      surl : 'https://indiagainstcorona.com',
+      furl: 'https://indiagainstcorona.com',
+      udf5: 'hello',
+      mode:'dropout'
+    };
+    let data = RequestData;
+    var text = data.key+'|'+data.txnid+'|'+data.amount+'|'+data.productinfo+'|'+data.firstname+'|'+data.email+'|||||'+data.udf5+'||||||'+'UrnK28wI9Y';
+    console.log("------");
+    console.log(text);
+    console.log("------");
+    var hash = sha512(text);
+    console.log("------");
+    console.log(hash);
+    console.log("------");
     window.bolt.launch(RequestData, 
       {
         responseHandler : function(response){console.log(response.json())}
