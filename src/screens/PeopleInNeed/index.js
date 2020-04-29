@@ -20,7 +20,7 @@ import axios from 'axios';
 import jsSHA from 'jssha';
 var sha = new jsSHA('SHA-512', "TEXT");
 
-import sha512 from 'js-sha512';
+// import sha512 from 'js-sha512';
 
 import NavBar from '../LandingPage/components/NavBar';
 import ExplainerBlock from '../../components/ExplainerBlock';
@@ -87,7 +87,7 @@ class PeopleInNeed extends React.Component {
   }
 
   setSelectedState = (event) => {
-    this.setState({ selectedState: event.target.value });
+    this.setState({ selectedState: event.target.value, selectedDistrict: 'All Cities' });
   }
 
   setSelectedDistrict = (event) => {
