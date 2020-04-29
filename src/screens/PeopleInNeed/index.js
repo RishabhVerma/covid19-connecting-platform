@@ -75,9 +75,12 @@ class PeopleInNeed extends React.Component {
     super(props);
     this.state = {
       selectedState: 'All States',
+      selectedDistrict: 'All Cities',
+      districtList: [],
       beneficariesLoading: true,
       beneficaries: [],
-      selectedBeneficary : {}
+      selectedBeneficary : {},
+      states : {},
     };
   }
 
@@ -85,13 +88,15 @@ class PeopleInNeed extends React.Component {
     this.setState({ selectedState: event.target.value });
   }
 
+  setSelectedDistrict = (event) => {
+    this.setState({ selectedDistrict : event.target.value });
+  }
+
   handleCheckboxSelect = (event) => {
     let selectedBeneficary = this.state.beneficaries.filter((b)=>b.id==event.target.name)
     selectedBeneficary[0].isChecked = event.target.checked
     this.setState({
       selectedBeneficary : selectedBeneficary
-    }, ()=>{
-      console.log(this.state.selectedBeneficary)
     })
   }
 
@@ -104,12 +109,25 @@ class PeopleInNeed extends React.Component {
     const response = await axios.get(API_URL);
     const beneficiaries = response.data.masterData;
     let beneficiariesCopy = []; 
+    // let statesAlreadyAdded = [];
     beneficiaries.forEach((b)=>{
       let eachBeneficiary = Object.assign(b, { isChecked : false })
       beneficiariesCopy.push(eachBeneficiary)
+      // let stateObject = {}
+      if(this.state.states[b.state.trim()]==undefined){
+        this.state.states[b.state.trim()] = []
+      }
+      if(this.state.states[b.state.trim()].indexOf(b.district.trim())<0 && b.district!=''){
+        this.state.states[b.state.trim()].push(b.district.trim())
+      }
+      // if(statesAlreadyAdded.indexOf(b.state.trim())<0){
+      //   statesAlreadyAdded.push(b.state.trim())
+      //   stateObject[b.state] = []
+      //   this.state.states.push(stateObject)
+      // }
     })
     this.setState({ beneficariesLoading: false, beneficaries: beneficiariesCopy });
-    console.log(this.state.beneficaries)
+    console.log(this.state.states)
   }
 
   handleBeneficaryCardToggle = (id) => {
@@ -156,7 +174,7 @@ class PeopleInNeed extends React.Component {
     const verified = beneficary.verified == "Yes" ? true : false;
     const expanded = beneficary.expanded !== undefined ? beneficary.expanded : false;
     return (
-      <Box key={beneficary.id}>
+      <Grid item xs={12} md={6} lg={4} key={beneficary.id}>
         <Card>
           <CardContent>
             <Box className={classes.cardTitle}>
@@ -213,30 +231,36 @@ class PeopleInNeed extends React.Component {
           </CardActions>
         </Card>
         <Spacer height={theme.spacing(2)} />
-      </Box>
+      </Grid>
     );
   }
   
   renderAllCards() {
-    const { beneficaries, selectedState } = this.state;
+    const { beneficaries, selectedState, selectedDistrict } = this.state;
     return (
-      <Box>
+      <Grid container spacing={3}>
         {beneficaries.map(beneficary => {
           if (selectedState === 'All States') {
             return this.renderCard(beneficary);
-          } else {
-            if (selectedState === beneficary.state) {
+          } 
+          else {
+            if(selectedDistrict !== 'All Cities' && selectedDistrict === beneficary.district) {
+              console.log(selectedDistrict)
+              return this.renderCard(beneficary);
+            }
+            else if (selectedDistrict === 'All Cities' && selectedState === beneficary.state) {
+              console.log(selectedState)
               return this.renderCard(beneficary);
             }
           }
         })}
-      </Box>
+      </Grid>
     );
   }
 
   render() {
     const { classes, theme  } = this.props;
-    const { selectedState, beneficariesLoading, beneficaries } = this.state;
+    const { selectedState, selectedDistrict, beneficariesLoading, beneficaries } = this.state;
     let count = 0;
     return (
       <>
@@ -282,6 +306,30 @@ class PeopleInNeed extends React.Component {
                 </Select>
               </FormControl>
             </Grid>
+            {
+              selectedState!=='All States' &&
+              <Grid item xs={12} md={9} lg={4}>
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel id="state-filter-label">City</InputLabel>
+                  <Select
+                    labelId="city-filter-label"
+                    id="city-filter"
+                    value={selectedDistrict}
+                    label="City"
+                    onChange={this.setSelectedDistrict}
+                  >
+                    <MenuItem value='All Cities'>All Cities</MenuItem>
+                    {
+                      this.state.states[selectedState].map((districts)=>{
+                        return(
+                          <MenuItem key={districts} value={districts}>{districts}</MenuItem>
+                        )
+                      })
+                    }
+                  </Select>
+                </FormControl>
+              </Grid>
+            }
           </Grid>
           <Grid item xs={12} md={12} lg={12}>
             {
