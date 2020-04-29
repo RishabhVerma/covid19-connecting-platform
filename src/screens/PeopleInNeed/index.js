@@ -17,11 +17,20 @@ import CardContent from '@material-ui/core/CardContent';
 
 import axios from 'axios';
 
+import jsSHA from 'jssha';
+var sha = new jsSHA('SHA-512', "TEXT");
+
 import NavBar from '../LandingPage/components/NavBar';
 import ExplainerBlock from '../../components/ExplainerBlock';
 
 
 const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coronaIndia/masterData';
+
+let hashSequence;
+
+hashSequence = "wu5IxsVg|202004272350334|200|Saquib|saquib18@navgurukul.org|udf1|udf2|udf3|udf4|udf5||||||UrnK28wI9Y";
+sha.update(hashSequence)
+var hashKey = sha.getHash("HEX")
 
 const styles = theme => ({
   container: {
@@ -117,6 +126,22 @@ class PeopleInNeed extends React.Component {
       beneficaries[benIndex].expanded = !beneficaries[benIndex].expanded;
     }
     this.setState({ beneficaries: beneficaries });
+  }
+
+  payUMoney = () => {
+    var RequestData = {
+      key: 'wu5IxsVg',
+      txnid: '202004272350334',
+      hash: hashKey,
+      amount: '200',
+      firstname: 'Saquib',
+      email: 'saquib18@navgurukul.org',
+      phone: '6111111111',
+      productinfo: 'Bag',
+      surl : 'https://sucess-url.in',
+      furl: 'https://fail-url.in'
+    }
+    window.bolt.launch(RequestData, {responseHandler : function(response){console.log(response.json())}}, {catchException : function(response){console.log(response.json())}})
   }
 
   renderCard(beneficary) {
@@ -272,6 +297,7 @@ class PeopleInNeed extends React.Component {
                 variant="contained" 
                 color="primary" 
                 style={{ backgroundColor: '#000'}}
+                onClick={this.payUMoney}
               >
                 Donate Rs.{count*600}
               </Button>
