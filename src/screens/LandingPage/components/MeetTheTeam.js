@@ -12,6 +12,7 @@ import SanchiImage from '../../../assets/img/team/sanchi.jpg';
 import ShobhitImage from '../../../assets/img/team/shobhit.jpg';
 import TabishImage from '../../../assets/img/team/tabish.jpg';
 import GhufranImage from '../../../assets/img/team/ghufran.jpg';
+import JatinImage from '../../../assets/img/team/jatin.jpg';
 
 
 const styles = theme => ({
@@ -112,6 +113,15 @@ const TEAM = [
     img: ShobhitImage,
     bgColor: '#e8e8e8de',
     bio: 'After SRCC and IIM-L, we are very grateful for his analytical skills handling all backend data management at IAC.',
+  },
+  {
+    id: 9,
+    name: 'Jatin Babbar',
+    title: 'Chief Volunteer Coordinator',
+    org: 'MasterCard India',
+    img: JatinImage,
+    bgColor: '#fff',
+    bio: 'Jamia alum, Ex-TATA Trust Fellow ZSBP and running its own Technology Startup. Contributing as volunteer at IAC by  coordinating with enablers and vendors to ensure proper deliver of ration kits to beneficiaries.',
   }
 ];
 
@@ -120,7 +130,7 @@ class MeetTheTeam extends React.Component {
     const { classes } = this.props;
     const bgColor = index % 2 == 0 ? '#e8e8e8de' : '#fff';
     return (
-      <Grid item xs={12} md={6} lg={3} style={{ backgroundColor: bgColor, borderBottom: '1px solid #bdbdbd', }} key={member.id}>
+      <Grid item xs={12} md={6} lg={4} style={{ backgroundColor: bgColor, borderBottom: '1px solid #bdbdbd', }} key={member.id}>
         <Box className={classes.memberTile}>
           { member.img !== undefined ? (
             <Avatar src={member.img} className={classes.memberPhoto} alt={member.name} />
