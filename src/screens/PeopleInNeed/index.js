@@ -231,7 +231,9 @@ class PeopleInNeed extends React.Component {
             {beneficary.area}, {beneficary.district}, {beneficary.state} ({beneficary.pinCode})
             </Typography>
             <Typography variant="h6" component="h3" color={'textSecondary'}>Mobile: {beneficary.mobile}</Typography>
-            <Typography variant="h6" component="h3" color={'textSecondary'}>Donation Amount: Rs.{beneficary.donationAmount}</Typography>
+            <Typography variant="h6" component="h3" color={'textSecondary'}>
+              Donation Amount: <Chip label={`Rs.${beneficary.donationAmount}`} color="primary" />
+            </Typography>
             {expanded ? (<Box>
               <Spacer height={theme.spacing(1)} />
               <Typography variant="h6" component="h3">What do they need?</Typography>
