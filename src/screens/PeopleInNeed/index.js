@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 
-import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Fab, CircularProgress } from '@material-ui/core';
+import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Fab, CircularProgress } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
 import Spacer from '../../components/Spacer';
 
@@ -78,7 +78,10 @@ class PeopleInNeed extends React.Component {
     this.state = {
       selectedState: 'All States',
       selectedDistrict: 'All Cities',
+      selectedDonationAmount : 0,
       districtList: [],
+      sliderMarks : [],
+      amountList : [],
       beneficariesLoading: true,
       beneficaries: [],
       selectedBeneficary : {},
@@ -94,6 +97,10 @@ class PeopleInNeed extends React.Component {
     this.setState({ selectedDistrict : event.target.value });
   }
 
+  setSelectedDonationAmount = (event) => {
+    this.setState({ selectedDonationAmount : event.target.value, selectedDistrict: 'All Cities', selectedState: 'All States' });
+  }
+
   handleCheckboxSelect = (event) => {
     let selectedBeneficary = this.state.beneficaries.filter((b)=>b.id==event.target.name)
     selectedBeneficary[0].isChecked = event.target.checked
@@ -103,6 +110,7 @@ class PeopleInNeed extends React.Component {
   }
 
   async componentDidMount() {
+    const { states, amountList } = this.state;
 
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
@@ -116,11 +124,14 @@ class PeopleInNeed extends React.Component {
       let eachBeneficiary = Object.assign(b, { isChecked : false })
       beneficiariesCopy.push(eachBeneficiary)
       // let stateObject = {}
-      if(this.state.states[b.state.trim()]==undefined){
-        this.state.states[b.state.trim()] = []
+      if(states[b.state.trim()]==undefined){
+        states[b.state.trim()] = []
       }
-      if(this.state.states[b.state.trim()].indexOf(b.district.trim())<0 && b.district!=''){
-        this.state.states[b.state.trim()].push(b.district.trim())
+      if(states[b.state.trim()].indexOf(b.district.trim())<0 && b.district!=''){
+        states[b.state.trim()].push(b.district.trim())
+      }
+      if(amountList.indexOf(b.donationAmount)<0){
+        amountList.push(b.donationAmount)
       }
       // if(statesAlreadyAdded.indexOf(b.state.trim())<0){
       //   statesAlreadyAdded.push(b.state.trim())
@@ -128,8 +139,17 @@ class PeopleInNeed extends React.Component {
       //   this.state.states.push(stateObject)
       // }
     })
+    amountList.sort((a, b)=>a-b)
+    this.state.sliderMarks = amountList.map((a)=>{
+      return (
+        {
+          value : a,
+          label : a.toString()
+        }
+      )
+    })
     this.setState({ beneficariesLoading: false, beneficaries: beneficiariesCopy });
-    console.log(this.state.states)
+    console.log(this.state.sliderMarks)
   }
 
   handleBeneficaryCardToggle = (id) => {
@@ -211,6 +231,7 @@ class PeopleInNeed extends React.Component {
             {beneficary.area}, {beneficary.district}, {beneficary.state} ({beneficary.pinCode})
             </Typography>
             <Typography variant="h6" component="h3" color={'textSecondary'}>Mobile: {beneficary.mobile}</Typography>
+            <Typography variant="h6" component="h3" color={'textSecondary'}>Donation Amount: Rs.{beneficary.donationAmount}</Typography>
             {expanded ? (<Box>
               <Spacer height={theme.spacing(1)} />
               <Typography variant="h6" component="h3">What do they need?</Typography>
@@ -249,11 +270,11 @@ class PeopleInNeed extends React.Component {
   }
   
   renderAllCards() {
-    const { beneficaries, selectedState, selectedDistrict } = this.state;
+    const { beneficaries, selectedState, selectedDistrict, selectedDonationAmount } = this.state;
     return (
       <Grid container spacing={3}>
         {beneficaries.map(beneficary => {
-          if (selectedState === 'All States') {
+          if (selectedState === 'All States' && selectedDonationAmount === 0) {
             return this.renderCard(beneficary);
           } 
           else {
@@ -261,9 +282,13 @@ class PeopleInNeed extends React.Component {
               console.log(selectedDistrict)
               return this.renderCard(beneficary);
             }
-            else if (selectedDistrict === 'All Cities' && selectedState === beneficary.state) {
+            else if (selectedDistrict === 'All Cities' && selectedState === beneficary.state && selectedDonationAmount === 0) {
               console.log(selectedState)
               return this.renderCard(beneficary);
+            }
+            else if (selectedDonationAmount === beneficary.donationAmount) {
+              console.log(selectedDonationAmount)
+              return this.renderCard(beneficary)
             }
           }
         })}
@@ -273,8 +298,10 @@ class PeopleInNeed extends React.Component {
 
   render() {
     const { classes, theme  } = this.props;
-    const { selectedState, selectedDistrict, beneficariesLoading, beneficaries } = this.state;
+    const { selectedState, selectedDistrict, selectedDonationAmount, beneficariesLoading, beneficaries } = this.state;
     let count = 0;
+    let allStates = Object.keys(this.state.states)
+
     return (
       <>
         <NavBar />
@@ -312,10 +339,13 @@ class PeopleInNeed extends React.Component {
                   onChange={this.setSelectedState}
                 >
                   <MenuItem value={'All States'}>All States</MenuItem>
-                  <MenuItem value={'Uttar Pradesh'}>Uttar Pradesh</MenuItem>
-                  <MenuItem value={'Delhi'}>Delhi</MenuItem>
-                  <MenuItem value={'Madhya Pradesh'}>Madhya Pradesh</MenuItem>
-                  <MenuItem value={'Maharashtra'}>Maharashtra</MenuItem>
+                  {
+                    allStates.map((s)=>{
+                      return(
+                        <MenuItem key={s} value={s}> {s} </MenuItem>
+                      )
+                    })
+                  }
                 </Select>
               </FormControl>
             </Grid>
@@ -335,7 +365,7 @@ class PeopleInNeed extends React.Component {
                     {
                       this.state.states[selectedState].map((districts)=>{
                         return(
-                          <MenuItem key={districts} value={districts}>{districts}</MenuItem>
+                          <MenuItem key={districts} value={districts}> {districts} </MenuItem>
                         )
                       })
                     }
@@ -343,16 +373,54 @@ class PeopleInNeed extends React.Component {
                 </FormControl>
               </Grid>
             }
+            {
+              <Grid item xs={12} md={9} lg={4}>
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel id="state-filter-label">Donation Amount</InputLabel>
+                  <Select
+                    labelId="donation-amount-filter-label"
+                    id="donation-amount-filter"
+                    value={selectedDonationAmount}
+                    label="Donation Amount"
+                    onChange={this.setSelectedDonationAmount}                    
+                  >
+                    <MenuItem value={0}> Select Donation Amount </MenuItem>
+                    {
+                      this.state.amountList.map((a)=>{
+                        return(
+                          <MenuItem key={a} value={a}> Rs.{a} </MenuItem>
+                        )
+                      })
+                    }
+                  </Select>
+                </FormControl>                
+              </Grid>
+            }
+            {/* {
+              this.state.sliderMarks.length>0 &&
+              <Grid item xs={12} md={9} lg={4}>
+                <Typography gutterBottom>Donation Amount</Typography>
+                <Slider
+                  defaultValue={0}
+                  getAriaValueText={this.getDonationValue}
+                  aria-labelledby="discrete-slider-small-steps"
+                  step={50}
+                  max={5000}
+                  valueLabelDisplay="on"
+                  marks={this.state.sliderMarks}
+                />
+            </Grid>
+            } */}
           </Grid>
           <Grid item xs={12} md={12} lg={12}>
             {
               beneficaries.map((b)=>{
                 if(b.isChecked==true){
-                  count+=1;
+                  count+=b.donationAmount;
                   return(
                       <Fab key={b.id} size="small" variant="extended" color="primary" aria-label="add" className={classes.fabButton}>
                         <PersonIcon />
-                        {' '}{b.name}
+                        {' '}{b.name}{'  '}Rs.{b.donationAmount}
                       </Fab>
                   ) 
                 }
@@ -367,7 +435,7 @@ class PeopleInNeed extends React.Component {
                 style={{ backgroundColor: '#000'}}
                 onClick={this.payUMoney}
               >
-                Donate Rs.{count*600}
+                Donate Rs.{count}
               </Button>
             }
           </Grid>
