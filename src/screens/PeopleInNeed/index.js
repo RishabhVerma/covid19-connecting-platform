@@ -119,11 +119,9 @@ class PeopleInNeed extends React.Component {
     const response = await axios.get(API_URL);
     const beneficiaries = response.data.masterData;
     let beneficiariesCopy = []; 
-    // let statesAlreadyAdded = [];
     beneficiaries.forEach((b)=>{
       let eachBeneficiary = Object.assign(b, { isChecked : false })
       beneficiariesCopy.push(eachBeneficiary)
-      // let stateObject = {}
       if(states[b.state.trim()]==undefined){
         states[b.state.trim()] = []
       }
@@ -133,23 +131,8 @@ class PeopleInNeed extends React.Component {
       if(amountList.indexOf(b.donationAmount)<0){
         amountList.push(b.donationAmount)
       }
-      // if(statesAlreadyAdded.indexOf(b.state.trim())<0){
-      //   statesAlreadyAdded.push(b.state.trim())
-      //   stateObject[b.state] = []
-      //   this.state.states.push(stateObject)
-      // }
-    })
-    amountList.sort((a, b)=>a-b)
-    this.state.sliderMarks = amountList.map((a)=>{
-      return (
-        {
-          value : a,
-          label : a.toString()
-        }
-      )
     })
     this.setState({ beneficariesLoading: false, beneficaries: beneficiariesCopy });
-    console.log(this.state.sliderMarks)
   }
 
   handleBeneficaryCardToggle = (id) => {
@@ -278,74 +261,33 @@ class PeopleInNeed extends React.Component {
       <Grid container spacing={3}>
         {beneficaries.map(beneficary => {
           if (selectedState === 'All States' && selectedDonationAmount === null) {
-            console.log("ALL RENDERED")
+            // console.log("ALL RENDERED")
             return this.renderCard(beneficary);
           }
           else if(selectedState===beneficary.state && selectedDonationAmount===null){
             if (selectedDistrict===beneficary.district){
-              console.log(`State ${selectedState} District ${selectedDistrict}`)
+              // console.log(`State ${selectedState} District ${selectedDistrict}`)
               return this.renderCard(beneficary)
             }
             else if(selectedDistrict==='All Cities'){
-              console.log(`Just State ${selectedState}`)
+              // console.log(`Just State ${selectedState}`)
               return this.renderCard(beneficary);
             }
           }
           else if (selectedDonationAmount>=beneficary.donationAmount && selectedState === 'All States'){
-            console.log(`Just Donation ${selectedDonationAmount}`)
+            // console.log(`Just Donation ${selectedDonationAmount}`)
             return this.renderCard(beneficary);
           }
           else if (selectedDonationAmount>=beneficary.donationAmount && selectedState===beneficary.state){
-            console.log(typeof(selectedDistrict))
             if(selectedDistrict==beneficary.district){
-              console.log(`Donation ${selectedDonationAmount} + State ${selectedState} + District ${selectedDistrict}`)
+              // console.log(`Donation ${selectedDonationAmount} + State ${selectedState} + District ${selectedDistrict}`)
               return this.renderCard(beneficary)
             }
             else if (selectedDistrict==='All Cities'){
-              console.log(`Donation ${selectedDonationAmount} + State ${selectedState}`)
+              // console.log(`Donation ${selectedDonationAmount} + State ${selectedState}`)
               return this.renderCard(beneficary);
             }
           }
-
-
-          // if (selectedState === 'All States' && selectedDonationAmount === null) {
-          //   return this.renderCard(beneficary);
-          // } 
-          // else {
-          //   if (selectedDonationAmount >= beneficary.donationAmount && selectedDistrict === 'All Cities') {
-          //     console.log(selectedDonationAmount)
-          //     if(selectedState === beneficary.state && selectedDistrict === beneficary.district){
-          //       console.log('All selected')
-          //       return this.renderCard(beneficary)
-          //     }
-          //     else if(selectedDistrict === beneficary.state && selectedDistrict === 'All Cities'){
-          //       console.log('Only state selected')
-          //       return this.renderCard(beneficary)
-          //     }
-          //     return this.renderCard(beneficary)
-          //   }
-          //   else if(selectedState === beneficary.state){ 
-          //     if(selectedDonationAmount >= beneficary.donationAmount){
-          //       return this.renderCard(beneficary)
-          //     }
-          //   }
-
-            // if(selectedState === beneficary.state && selectedDonationAmount === null) {
-            //   return this.renderCard(beneficary);
-            // }
-            // else if(selectedDistrict === beneficary.state && selectedDistrict === beneficary.district) {
-            //   console.log(selectedDistrict)
-            //   return this.renderCard(beneficary);
-            // }
-            // else if (selectedDistrict === 'All Cities' && selectedState === beneficary.state && selectedDonationAmount === null) {
-            //   console.log(selectedState)
-            //   return this.renderCard(beneficary);
-            // }
-            // else if (selectedDonationAmount >= beneficary.donationAmount) {
-            //   console.log(selectedDonationAmount)
-            //   return this.renderCard(beneficary)
-            // }
-          // }
         })}
       </Grid>
     );
@@ -453,16 +395,17 @@ class PeopleInNeed extends React.Component {
             }
             {
               <Grid item xs={12} md={9} lg={4}>
-                <Typography gutterBottom>Donation Amount</Typography>
+                {/* <InputLabel id="state-filter-label">Filter By Donation Amount</InputLabel> */}
                 <Slider
-                  defaultValue={5000}
+                  defaultValue={this.state.amountList[this.state.amountList.length-1]+1000}
                   value={selectedDonationAmount}
                   onChange={this.setSelectedDonationAmount}
                   getAriaValueText={this.getDonationValue}
                   aria-labelledby="continuous-slider"
-                  max={5000}
+                  max={this.state.amountList[this.state.amountList.length-1]+1000}
                   valueLabelDisplay="auto"
                 />
+                <Typography variant="body1" gutterBottom>Filter by Donation Amount</Typography>
             </Grid>
             }
           </Grid>
