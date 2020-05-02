@@ -2,6 +2,8 @@ import React from 'react';
 import ReactGA from 'react-ga';
 
 import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Fab, CircularProgress } from '@material-ui/core';
+import { SemipolarSpinner } from 'react-epic-spinners';
+
 import PersonIcon from '@material-ui/icons/Person';
 import Spacer from '../../components/Spacer';
 
@@ -437,7 +439,7 @@ class PeopleInNeed extends React.Component {
             }
           </Grid>
           <Spacer height={theme.spacing(2)} />
-          { beneficariesLoading ? <Grid><CircularProgress disableShrink/></Grid> : this.renderAllCards() }
+          { beneficariesLoading ? <Grid><SemipolarSpinner color="#000000" size="40"/></Grid> : this.renderAllCards() }
           <Spacer height={theme.spacing(2)} />
         </Box>
         </Container>
