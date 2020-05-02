@@ -439,7 +439,7 @@ class PeopleInNeed extends React.Component {
             }
           </Grid>
           <Spacer height={theme.spacing(2)} />
-          { beneficariesLoading ? <Grid><SemipolarSpinner color="#000000" size="40"/></Grid> : this.renderAllCards() }
+          { beneficariesLoading ? <Grid container direction="row" justify="center" alignItems="center"><SemipolarSpinner color="#0122ff" size="40"/></Grid> : this.renderAllCards() }
           <Spacer height={theme.spacing(2)} />
         </Box>
         </Container>
