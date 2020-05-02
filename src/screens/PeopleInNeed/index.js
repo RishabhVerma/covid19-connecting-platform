@@ -20,7 +20,7 @@ import axios from 'axios';
 import jsSHA from 'jssha';
 var sha = new jsSHA('SHA-512', "TEXT");
 
-// import sha512 from 'js-sha512';
+import sha512 from 'js-sha512';
 
 import NavBar from '../LandingPage/components/NavBar';
 import ExplainerBlock from '../../components/ExplainerBlock';
@@ -78,7 +78,7 @@ class PeopleInNeed extends React.Component {
     this.state = {
       selectedState: 'All States',
       selectedDistrict: 'All Cities',
-      selectedDonationAmount : 0,
+      selectedDonationAmount : null,
       districtList: [],
       sliderMarks : [],
       amountList : [],
@@ -97,8 +97,8 @@ class PeopleInNeed extends React.Component {
     this.setState({ selectedDistrict : event.target.value });
   }
 
-  setSelectedDonationAmount = (event) => {
-    this.setState({ selectedDonationAmount : event.target.value, selectedDistrict: 'All Cities', selectedState: 'All States' });
+  setSelectedDonationAmount = (event, newValue) => {
+    this.setState({ selectedDonationAmount : newValue });
   }
 
   handleCheckboxSelect = (event) => {
@@ -273,26 +273,79 @@ class PeopleInNeed extends React.Component {
   
   renderAllCards() {
     const { beneficaries, selectedState, selectedDistrict, selectedDonationAmount } = this.state;
+    let rend = [];
     return (
       <Grid container spacing={3}>
         {beneficaries.map(beneficary => {
-          if (selectedState === 'All States' && selectedDonationAmount === 0) {
+          if (selectedState === 'All States' && selectedDonationAmount === null) {
+            console.log("ALL RENDERED")
             return this.renderCard(beneficary);
-          } 
-          else {
-            if(selectedDistrict !== 'All Cities' && selectedDistrict === beneficary.district) {
-              console.log(selectedDistrict)
-              return this.renderCard(beneficary);
-            }
-            else if (selectedDistrict === 'All Cities' && selectedState === beneficary.state && selectedDonationAmount === 0) {
-              console.log(selectedState)
-              return this.renderCard(beneficary);
-            }
-            else if (selectedDonationAmount === beneficary.donationAmount) {
-              console.log(selectedDonationAmount)
+          }
+          else if(selectedState===beneficary.state && selectedDonationAmount===null){
+            if (selectedDistrict===beneficary.district){
+              console.log(`State ${selectedState} District ${selectedDistrict}`)
               return this.renderCard(beneficary)
             }
+            else if(selectedDistrict==='All Cities'){
+              console.log(`Just State ${selectedState}`)
+              return this.renderCard(beneficary);
+            }
           }
+          else if (selectedDonationAmount>=beneficary.donationAmount && selectedState === 'All States'){
+            console.log(`Just Donation ${selectedDonationAmount}`)
+            return this.renderCard(beneficary);
+          }
+          else if (selectedDonationAmount>=beneficary.donationAmount && selectedState===beneficary.state){
+            console.log(typeof(selectedDistrict))
+            if(selectedDistrict==beneficary.district){
+              console.log(`Donation ${selectedDonationAmount} + State ${selectedState} + District ${selectedDistrict}`)
+              return this.renderCard(beneficary)
+            }
+            else if (selectedDistrict==='All Cities'){
+              console.log(`Donation ${selectedDonationAmount} + State ${selectedState}`)
+              return this.renderCard(beneficary);
+            }
+          }
+
+
+          // if (selectedState === 'All States' && selectedDonationAmount === null) {
+          //   return this.renderCard(beneficary);
+          // } 
+          // else {
+          //   if (selectedDonationAmount >= beneficary.donationAmount && selectedDistrict === 'All Cities') {
+          //     console.log(selectedDonationAmount)
+          //     if(selectedState === beneficary.state && selectedDistrict === beneficary.district){
+          //       console.log('All selected')
+          //       return this.renderCard(beneficary)
+          //     }
+          //     else if(selectedDistrict === beneficary.state && selectedDistrict === 'All Cities'){
+          //       console.log('Only state selected')
+          //       return this.renderCard(beneficary)
+          //     }
+          //     return this.renderCard(beneficary)
+          //   }
+          //   else if(selectedState === beneficary.state){ 
+          //     if(selectedDonationAmount >= beneficary.donationAmount){
+          //       return this.renderCard(beneficary)
+          //     }
+          //   }
+
+            // if(selectedState === beneficary.state && selectedDonationAmount === null) {
+            //   return this.renderCard(beneficary);
+            // }
+            // else if(selectedDistrict === beneficary.state && selectedDistrict === beneficary.district) {
+            //   console.log(selectedDistrict)
+            //   return this.renderCard(beneficary);
+            // }
+            // else if (selectedDistrict === 'All Cities' && selectedState === beneficary.state && selectedDonationAmount === null) {
+            //   console.log(selectedState)
+            //   return this.renderCard(beneficary);
+            // }
+            // else if (selectedDonationAmount >= beneficary.donationAmount) {
+            //   console.log(selectedDonationAmount)
+            //   return this.renderCard(beneficary)
+            // }
+          // }
         })}
       </Grid>
     );
@@ -376,43 +429,42 @@ class PeopleInNeed extends React.Component {
               </Grid>
             }
             {
-              <Grid item xs={12} md={9} lg={4}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="state-filter-label">Donation Amount</InputLabel>
-                  <Select
-                    labelId="donation-amount-filter-label"
-                    id="donation-amount-filter"
-                    value={selectedDonationAmount}
-                    label="Donation Amount"
-                    onChange={this.setSelectedDonationAmount}                    
-                  >
-                    <MenuItem value={0}> Select Donation Amount </MenuItem>
-                    {
-                      this.state.amountList.map((a)=>{
-                        return(
-                          <MenuItem key={a} value={a}> Rs.{a} </MenuItem>
-                        )
-                      })
-                    }
-                  </Select>
-                </FormControl>                
-              </Grid>
+              // <Grid item xs={12} md={9} lg={4}>
+              //   <FormControl variant="outlined" className={classes.formControl}>
+              //     <InputLabel id="state-filter-label">Donation Amount</InputLabel>
+              //     <Select
+              //       labelId="donation-amount-filter-label"
+              //       id="donation-amount-filter"
+              //       value={selectedDonationAmount}
+              //       label="Donation Amount"
+              //       onChange={this.setSelectedDonationAmount}                    
+              //     >
+              //       <MenuItem value={0}> Select Donation Amount </MenuItem>
+              //       {
+              //         this.state.amountList.map((a)=>{
+              //           return(
+              //             <MenuItem key={a} value={a}> Rs.{a} </MenuItem>
+              //           )
+              //         })
+              //       }
+              //     </Select>
+              //   </FormControl>                
+              // </Grid>
             }
-            {/* {
-              this.state.sliderMarks.length>0 &&
+            {
               <Grid item xs={12} md={9} lg={4}>
                 <Typography gutterBottom>Donation Amount</Typography>
                 <Slider
-                  defaultValue={0}
+                  defaultValue={5000}
+                  value={selectedDonationAmount}
+                  onChange={this.setSelectedDonationAmount}
                   getAriaValueText={this.getDonationValue}
-                  aria-labelledby="discrete-slider-small-steps"
-                  step={50}
+                  aria-labelledby="continuous-slider"
                   max={5000}
-                  valueLabelDisplay="on"
-                  marks={this.state.sliderMarks}
+                  valueLabelDisplay="auto"
                 />
             </Grid>
-            } */}
+            }
           </Grid>
           <Grid item xs={12} md={12} lg={12}>
             {

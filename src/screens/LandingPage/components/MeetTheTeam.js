@@ -118,7 +118,7 @@ const TEAM = [
     id: 9,
     name: 'Jatin Babbar',
     title: 'Chief Volunteer Coordinator',
-    org: 'MasterCard India',
+    org: 'Chief Volunteer Co-ordinator, IAC',
     img: JatinImage,
     bgColor: '#fff',
     bio: 'Jamia alum, Ex-TATA Trust Fellow ZSBP and running its own Technology Startup. Contributing as volunteer at IAC by  coordinating with enablers and vendors to ensure proper deliver of ration kits to beneficiaries.',
