@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 
-import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Fab, CircularProgress } from '@material-ui/core';
+import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Fab, Link } from '@material-ui/core';
 import { SemipolarSpinner } from 'react-epic-spinners';
 
 import PersonIcon from '@material-ui/icons/Person';
@@ -19,22 +19,11 @@ import CardContent from '@material-ui/core/CardContent';
 
 import axios from 'axios';
 
-import jsSHA from 'jssha';
-var sha = new jsSHA('SHA-512', "TEXT");
-
-import sha512 from 'js-sha512';
-
 import NavBar from '../LandingPage/components/NavBar';
 import ExplainerBlock from '../../components/ExplainerBlock';
 
 
 const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coronaIndia/masterData';
-
-let hashSequence;
-
-hashSequence = "ENTER_KEY|202004272350334|200|Saquib|saquib18@navgurukul.org|udf1|udf2|udf3|udf4|udf5||||||ENTER_SALT";
-sha.update(hashSequence)
-var hashKey = sha.getHash("HEX")
 
 const styles = theme => ({
   container: {
@@ -153,39 +142,6 @@ class PeopleInNeed extends React.Component {
     this.setState({ beneficaries: beneficaries });
   }
 
-  payUMoney = () => {
-    var RequestData = {
-      key: 'wu5IxsVg',
-      txnid: 'xsuags798',
-      hash: 'hashKey',
-      amount: '200',
-      firstname: 'Saquib',
-      email: 'saquib18@navgurukul.org',
-      phone: '8130378953',
-      productinfo: 'Donation',
-      surl : 'https://indiagainstcorona.com',
-      furl: 'https://indiagainstcorona.com',
-      udf5: 'hello',
-      mode:'dropout'
-    };
-    let data = RequestData;
-    var text = data.key+'|'+data.txnid+'|'+data.amount+'|'+data.productinfo+'|'+data.firstname+'|'+data.email+'|||||'+data.udf5+'||||||'+'UrnK28wI9Y';
-    console.log("------");
-    console.log(text);
-    console.log("------");
-    var hash = sha512(text);
-    console.log("------");
-    console.log(hash);
-    console.log("------");
-    window.bolt.launch(RequestData, 
-      {
-        responseHandler : function(response){console.log(response.json())}
-      }, 
-      {
-        catchException : function(response){console.log(response.json())}
-      }
-    )
-  }
 
   renderCard(beneficary) {
     const { theme, classes } = this.props;
@@ -399,7 +355,6 @@ class PeopleInNeed extends React.Component {
               <Grid item xs={12} md={9} lg={4}>
                 {/* <InputLabel id="state-filter-label">Filter By Donation Amount</InputLabel> */}
                 <Slider
-                  defaultValue={this.state.amountList[this.state.amountList.length-1]+1000}
                   value={selectedDonationAmount}
                   onChange={this.setSelectedDonationAmount}
                   getAriaValueText={this.getDonationValue}
@@ -427,15 +382,17 @@ class PeopleInNeed extends React.Component {
             }
             {
               (count>0) &&
-              <Button 
-                size="small" 
-                variant="contained" 
-                color="primary" 
-                style={{ backgroundColor: '#000'}}
-                onClick={this.payUMoney}
-              >
-                Donate Rs.{count}
-              </Button>
+              <Link href="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA" target="_blank">
+                <Button 
+                  size="small" 
+                  variant="contained" 
+                  color="primary" 
+                  style={{ backgroundColor: '#000'}}
+                >
+                  Donate Rs.{count}
+                </Button>
+              </Link>
+
             }
           </Grid>
           <Spacer height={theme.spacing(2)} />
