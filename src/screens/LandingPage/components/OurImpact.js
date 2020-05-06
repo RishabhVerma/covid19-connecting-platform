@@ -53,7 +53,7 @@ const ANALYTICS = [
   {
     "id": 1,
     "background": "#ffce00",
-    "highlight": "10,000+",
+    "highlight": "14,000+",
     "text1": "Families helped.",
   },
   {

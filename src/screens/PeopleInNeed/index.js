@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 
-import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Fab, CircularProgress } from '@material-ui/core';
+import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Fab, Link } from '@material-ui/core';
+import { SemipolarSpinner } from 'react-epic-spinners';
+
 import PersonIcon from '@material-ui/icons/Person';
 import Spacer from '../../components/Spacer';
 
@@ -51,9 +53,13 @@ const styles = theme => ({
   formControl: {
     width: '100%',
   },
+  checkbox : {
+    position: 'relative',
+    right: '5px'
+  },
   fabButton: {
     margin: '5px',
-  }
+  },
 });
 
 class PeopleInNeed extends React.Component {
@@ -62,14 +68,28 @@ class PeopleInNeed extends React.Component {
     super(props);
     this.state = {
       selectedState: 'All States',
+      selectedDistrict: 'All Cities',
+      selectedDonationAmount : null,
+      districtList: [],
+      sliderMarks : [],
+      amountList : [],
       beneficariesLoading: true,
       beneficaries: [],
-      selectedBeneficary : {}
+      selectedBeneficary : {},
+      states : {},
     };
   }
 
   setSelectedState = (event) => {
-    this.setState({ selectedState: event.target.value });
+    this.setState({ selectedState: event.target.value, selectedDistrict: 'All Cities' });
+  }
+
+  setSelectedDistrict = (event) => {
+    this.setState({ selectedDistrict : event.target.value });
+  }
+
+  setSelectedDonationAmount = (event, newValue) => {
+    this.setState({ selectedDonationAmount : newValue });
   }
 
   handleCheckboxSelect = (event) => {
@@ -77,12 +97,11 @@ class PeopleInNeed extends React.Component {
     selectedBeneficary[0].isChecked = event.target.checked
     this.setState({
       selectedBeneficary : selectedBeneficary
-    }, ()=>{
-      console.log(this.state.selectedBeneficary)
     })
   }
 
   async componentDidMount() {
+    const { states, amountList } = this.state;
 
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
@@ -94,9 +113,17 @@ class PeopleInNeed extends React.Component {
     beneficiaries.forEach((b)=>{
       let eachBeneficiary = Object.assign(b, { isChecked : false })
       beneficiariesCopy.push(eachBeneficiary)
+      if(states[b.state.trim()]==undefined){
+        states[b.state.trim()] = []
+      }
+      if(states[b.state.trim()].indexOf(b.district.trim())<0 && b.district!=''){
+        states[b.state.trim()].push(b.district.trim())
+      }
+      if(amountList.indexOf(b.donationAmount)<0){
+        amountList.push(b.donationAmount)
+      }
     })
     this.setState({ beneficariesLoading: false, beneficaries: beneficiariesCopy });
-    console.log(this.state.beneficaries)
   }
 
   handleBeneficaryCardToggle = (id) => {
@@ -115,12 +142,13 @@ class PeopleInNeed extends React.Component {
     this.setState({ beneficaries: beneficaries });
   }
 
+
   renderCard(beneficary) {
     const { theme, classes } = this.props;
     const verified = beneficary.verified == "Yes" ? true : false;
     const expanded = beneficary.expanded !== undefined ? beneficary.expanded : false;
     return (
-      <Box key={beneficary.id}>
+      <Grid item xs={12} md={6} lg={4} key={beneficary.id}>
         <Card>
           <CardContent>
             <Box className={classes.cardTitle}>
@@ -144,6 +172,9 @@ class PeopleInNeed extends React.Component {
             {beneficary.area}, {beneficary.district}, {beneficary.state} ({beneficary.pinCode})
             </Typography>
             <Typography variant="h6" component="h3" color={'textSecondary'}>Mobile: {beneficary.mobile}</Typography>
+            <Typography variant="h6" component="h3" color={'textSecondary'}>
+              Donation Amount: <Chip label={`Rs.${beneficary.donationAmount}`} color="primary" />
+            </Typography>
             {expanded ? (<Box>
               <Spacer height={theme.spacing(1)} />
               <Typography variant="h6" component="h3">What do they need?</Typography>
@@ -177,31 +208,55 @@ class PeopleInNeed extends React.Component {
           </CardActions>
         </Card>
         <Spacer height={theme.spacing(2)} />
-      </Box>
+      </Grid>
     );
   }
   
   renderAllCards() {
-    const { beneficaries, selectedState } = this.state;
+    const { beneficaries, selectedState, selectedDistrict, selectedDonationAmount } = this.state;
+    let rend = [];
     return (
-      <Box>
+      <Grid container spacing={3}>
         {beneficaries.map(beneficary => {
-          if (selectedState === 'All States') {
+          if (selectedState === 'All States' && selectedDonationAmount === null) {
+            // console.log("ALL RENDERED")
             return this.renderCard(beneficary);
-          } else {
-            if (selectedState === beneficary.state) {
+          }
+          else if(selectedState===beneficary.state && selectedDonationAmount===null){
+            if (selectedDistrict===beneficary.district){
+              // console.log(`State ${selectedState} District ${selectedDistrict}`)
+              return this.renderCard(beneficary)
+            }
+            else if(selectedDistrict==='All Cities'){
+              // console.log(`Just State ${selectedState}`)
+              return this.renderCard(beneficary);
+            }
+          }
+          else if (selectedDonationAmount>=beneficary.donationAmount && selectedState === 'All States'){
+            // console.log(`Just Donation ${selectedDonationAmount}`)
+            return this.renderCard(beneficary);
+          }
+          else if (selectedDonationAmount>=beneficary.donationAmount && selectedState===beneficary.state){
+            if(selectedDistrict==beneficary.district){
+              // console.log(`Donation ${selectedDonationAmount} + State ${selectedState} + District ${selectedDistrict}`)
+              return this.renderCard(beneficary)
+            }
+            else if (selectedDistrict==='All Cities'){
+              // console.log(`Donation ${selectedDonationAmount} + State ${selectedState}`)
               return this.renderCard(beneficary);
             }
           }
         })}
-      </Box>
+      </Grid>
     );
   }
 
   render() {
     const { classes, theme  } = this.props;
-    const { selectedState, beneficariesLoading, beneficaries } = this.state;
+    const { selectedState, selectedDistrict, selectedDonationAmount, beneficariesLoading, beneficaries } = this.state;
     let count = 0;
+    let allStates = Object.keys(this.state.states)
+
     return (
       <>
         <NavBar />
@@ -239,23 +294,87 @@ class PeopleInNeed extends React.Component {
                   onChange={this.setSelectedState}
                 >
                   <MenuItem value={'All States'}>All States</MenuItem>
-                  <MenuItem value={'Uttar Pradesh'}>Uttar Pradesh</MenuItem>
-                  <MenuItem value={'Delhi'}>Delhi</MenuItem>
-                  <MenuItem value={'Madhya Pradesh'}>Madhya Pradesh</MenuItem>
-                  <MenuItem value={'Maharashtra'}>Maharashtra</MenuItem>
+                  {
+                    allStates.map((s)=>{
+                      return(
+                        <MenuItem key={s} value={s}> {s} </MenuItem>
+                      )
+                    })
+                  }
                 </Select>
               </FormControl>
             </Grid>
+            {
+              selectedState!=='All States' &&
+              <Grid item xs={12} md={9} lg={4}>
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel id="state-filter-label">City</InputLabel>
+                  <Select
+                    labelId="city-filter-label"
+                    id="city-filter"
+                    value={selectedDistrict}
+                    label="City"
+                    onChange={this.setSelectedDistrict}
+                  >
+                    <MenuItem value='All Cities'>All Cities</MenuItem>
+                    {
+                      this.state.states[selectedState].map((districts)=>{
+                        return(
+                          <MenuItem key={districts} value={districts}> {districts} </MenuItem>
+                        )
+                      })
+                    }
+                  </Select>
+                </FormControl>
+              </Grid>
+            }
+            {
+              // <Grid item xs={12} md={9} lg={4}>
+              //   <FormControl variant="outlined" className={classes.formControl}>
+              //     <InputLabel id="state-filter-label">Donation Amount</InputLabel>
+              //     <Select
+              //       labelId="donation-amount-filter-label"
+              //       id="donation-amount-filter"
+              //       value={selectedDonationAmount}
+              //       label="Donation Amount"
+              //       onChange={this.setSelectedDonationAmount}                    
+              //     >
+              //       <MenuItem value={0}> Select Donation Amount </MenuItem>
+              //       {
+              //         this.state.amountList.map((a)=>{
+              //           return(
+              //             <MenuItem key={a} value={a}> Rs.{a} </MenuItem>
+              //           )
+              //         })
+              //       }
+              //     </Select>
+              //   </FormControl>                
+              // </Grid>
+            }
+            {
+              <Grid item xs={12} md={9} lg={4}>
+                {/* <InputLabel id="state-filter-label">Filter By Donation Amount</InputLabel> */}
+                <Slider
+                  value={selectedDonationAmount}
+                  onChange={this.setSelectedDonationAmount}
+                  getAriaValueText={this.getDonationValue}
+                  aria-labelledby="continuous-slider"
+                  max={this.state.amountList[this.state.amountList.length-1]+1000}
+                  valueLabelDisplay="auto"
+                />
+                <Typography variant="body1" gutterBottom>Filter by Donation Amount</Typography>
+            </Grid>
+            }
           </Grid>
           <Grid item xs={12} md={12} lg={12}>
             {
               beneficaries.map((b)=>{
                 if(b.isChecked==true){
-                  count+=1;
+                  count+=b.donationAmount;
                   return(
                       <Fab key={b.id} size="small" variant="extended" color="primary" aria-label="add" className={classes.fabButton}>
                         <PersonIcon />
-                        {' '}{b.name}
+                        {' '}{b.name}{'  '}Rs.{b.donationAmount}
                       </Fab>
                   ) 
                 }
@@ -263,18 +382,21 @@ class PeopleInNeed extends React.Component {
             }
             {
               (count>0) &&
-              <Button 
-                size="small" 
-                variant="contained" 
-                color="primary" 
-                style={{ backgroundColor: '#000'}}
-              >
-                Donate Rs.{count*600}
-              </Button>
+              <Link href="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA" target="_blank">
+                <Button 
+                  size="small" 
+                  variant="contained" 
+                  color="primary" 
+                  style={{ backgroundColor: '#000'}}
+                >
+                  Donate Rs.{count}
+                </Button>
+              </Link>
+
             }
           </Grid>
           <Spacer height={theme.spacing(2)} />
-          { beneficariesLoading ? <Grid><CircularProgress disableShrink/></Grid> : this.renderAllCards() }
+          { beneficariesLoading ? <Grid container direction="row" justify="center" alignItems="center"><SemipolarSpinner color="#0122ff" size="40"/></Grid> : this.renderAllCards() }
           <Spacer height={theme.spacing(2)} />
         </Box>
         </Container>
