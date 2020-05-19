@@ -46,6 +46,7 @@
     "react-youtube": "^7.9.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "sha512": "0.0.1",
     "style-loader": "^1.1.2",
     "underscore": "^1.9.1"
   },
