@@ -32,7 +32,8 @@ const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coron
 
 let hashSequence;
 
-hashSequence = "ENTER_KEY|202004272350334|200|Saquib|saquib18@navgurukul.org|udf1|udf2|udf3|udf4|udf5||||||ENTER_SALT";
+// "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10"
+hashSequence = "wu5IxsVg|202004272350334|200|test product info|Saquib|saquib18@navgurukul.org|||||||||||UrnK28wI9Y";
 sha.update(hashSequence)
 var hashKey = sha.getHash("HEX")
 
@@ -156,16 +157,15 @@ class PeopleInNeed extends React.Component {
   payUMoney = () => {
     var RequestData = {
       key: 'wu5IxsVg',
-      txnid: 'xsuags798',
-      hash: 'hashKey',
+      txnid: '202004272350334',
+      hash: hashKey,
       amount: '200',
       firstname: 'Saquib',
       email: 'saquib18@navgurukul.org',
       phone: '8130378953',
-      productinfo: 'Donation',
+      productinfo: 'test product info',
       surl : 'https://indiagainstcorona.com',
       furl: 'https://indiagainstcorona.com',
-      udf5: 'hello',
       mode:'dropout'
     };
     let data = RequestData;
