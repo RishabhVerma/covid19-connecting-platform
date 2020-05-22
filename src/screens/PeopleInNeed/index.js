@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 
-import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Fab, CircularProgress } from '@material-ui/core';
+import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Fab } from '@material-ui/core';
 import { SemipolarSpinner } from 'react-epic-spinners';
 
 import PersonIcon from '@material-ui/icons/Person';
+
 import Spacer from '../../components/Spacer';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -129,7 +130,7 @@ class PeopleInNeed extends React.Component {
         amountList.push(b.donationAmount)
       }
     })
-    this.setState({ beneficariesLoading: false, beneficaries: beneficiariesCopy });
+    this.setState({ beneficariesLoading: false, beneficaries: beneficiariesCopy, amountList : amountList.sort((a, b)=>a-b) });
   }
 
   handleBeneficaryCardToggle = (id) => {
@@ -298,7 +299,6 @@ class PeopleInNeed extends React.Component {
     const { selectedState, selectedDistrict, selectedDonationAmount, beneficariesLoading, beneficaries } = this.state;
     let count = 0;
     let allStates = Object.keys(this.state.states)
-
     return (
       <>
         <NavBar />
@@ -376,7 +376,6 @@ class PeopleInNeed extends React.Component {
                   defaultValue={this.state.amountList[this.state.amountList.length-1]+1000}
                   value={selectedDonationAmount}
                   onChange={this.setSelectedDonationAmount}
-                  getAriaValueText={this.getDonationValue}
                   aria-labelledby="continuous-slider"
                   max={this.state.amountList[this.state.amountList.length-1]+1000}
                   valueLabelDisplay="auto"
@@ -409,7 +408,7 @@ class PeopleInNeed extends React.Component {
                 style={{ backgroundColor: '#000'}}
                 onClick={() => this.payUMoney(count)}
               >
-                Donate Rs.{count}
+                Donate INR {count}
               </Button>
             }
           </Grid>
