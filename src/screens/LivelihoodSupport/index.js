@@ -306,21 +306,21 @@ class LivelihoodSupport extends Component {
                 <Container maxWidth="lg" style={{ padding: 0 }}>
                 <Box className={classes.container}>
                     <Spacer height={theme.spacing(2)} />
-                    <Typography variant="h4" component="h1">Transparency  Matters</Typography>
+                    <Typography variant="h4" component="h1">#HelpSmallBusinesses</Typography>
                     <br />
                     <Typography variant="body1">
                         <strong>
-                        {'View and connect with our crowdsources in-need beneficiaries.'}
+                        {'In the current crisis, many daily wage earners have lost their livelihoods under lockdown – but the question for many remains: without resources, how will they open their shops, restaurants, and roadside services?'}
                         </strong>
                     </Typography>
                     <br />
                     <Typography variant="body1">
-                        {'We are building a publicly available list for you to connect directly with those in need. Below is a list of families who need direct support, if you are located nearby and interested in directly supporting. Contact the numbers below directly! '}
+                        {' Support a small business owner directly. As cities reopen, help daily wage earners to restart their livelihoods with a direct cash transfer for their business.'}
                     </Typography>
                     <br />
                     <Typography variant="body1" align="justify">
                         <em>
-                        {'You can filter by a particular state to see beneficiaries from one particular state.'}
+                        {'[Select one or more beneficiaries from the list to support Indian small businesses.]'}
                         </em>
                     </Typography>
                     <br />
@@ -405,7 +405,7 @@ class LivelihoodSupport extends Component {
                         {
                         (count>0) &&
                         <Button 
-                            size="small" 
+                            size="small"
                             variant="contained" 
                             color="primary" 
                             style={{ backgroundColor: '#000'}}
