@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactGA from 'react-ga';
 
 import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Tooltip, createMuiTheme, MuiThemeProvider, Fab } from '@material-ui/core';
-import { FlowerSpinner } from 'react-epic-spinners';
+import { RadarSpinner } from 'react-epic-spinners';
 
 import PersonIcon from '@material-ui/icons/Person';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
@@ -88,7 +88,7 @@ class LivelihoodSupport extends Component {
         this.state = {
             selectedState: 'All States',
             selectedDistrict: 'All Cities',
-            selectedDonationAmount : null,
+            selectedDonationAmount : 0,
             districtList: [],
             amountList : [],
             beneficiariesLoading : true,
@@ -135,11 +135,18 @@ class LivelihoodSupport extends Component {
             if(states[b.state.trim()].indexOf(b['district/city'].trim())<0 && b['district/city']!=''){
                 states[b.state.trim()].push(b['district/city'].trim())
             }
-            if(amountList.indexOf(parseInt(b.needs.split(" ")[1]))<0){
-                amountList.push(parseInt(b.needs.split(" ")[1]))
+            if(amountList.indexOf(parseInt(b.needs))<0){
+                amountList.push(parseInt(b.needs))
             }
         })
-        this.setState({ beneficiariesLoading: false, beneficiaries: beneficiariesCopy, amountList : amountList.sort((a, b)=>a-b) });
+        await this.setState({ 
+            beneficiariesLoading: false, 
+            beneficiaries: beneficiariesCopy, 
+            amountList : amountList.sort((a, b)=>a-b),
+        });
+        this.setState({
+            selectedDonationAmount : amountList[amountList.length-1]
+        })
     }
 
     handleBeneficiaryCardToggle = (id) => {
@@ -221,7 +228,7 @@ class LivelihoodSupport extends Component {
                         <Box>
                             <MuiThemeProvider theme={customizedTheme}>
                                     <Typography variant="h6" component="h3" color={'textSecondary'}>
-                                        Needs : <Tooltip title={`Supports : ${beneficiary.supports}`}><Chip className={classes.neededChip} label={beneficiary.needs}></Chip></Tooltip>
+                                        Needs : <Tooltip title={`Supports : ${beneficiary.supports}`}><Chip className={classes.neededChip} label={`Rs. ${beneficiary.needs}`}></Chip></Tooltip>
                                     </Typography>
                             </MuiThemeProvider>
                         </Box>
@@ -249,16 +256,16 @@ class LivelihoodSupport extends Component {
     }
 
     renderAllCards(){
-        const { beneficiaries, selectedState, selectedDistrict, selectedDonationAmount } = this.state;
+        const { beneficiaries, selectedState, selectedDistrict, selectedDonationAmount, amountList } = this.state;
         let rend = [];
         return (
           <Grid container spacing={3}>
             {beneficiaries.map(beneficary => {
-              if (selectedState === 'All States' && selectedDonationAmount === null) {
+              if (selectedState === 'All States' && selectedDonationAmount === amountList[amountList.length-1]) {
                 // console.log("ALL RENDERED")
                 return this.renderCard(beneficary);
               }
-              else if(selectedState===beneficary.state && selectedDonationAmount===null){
+              else if(selectedState===beneficary.state && selectedDonationAmount === amountList[amountList.length-1]){
                 if (selectedDistrict===beneficary['district/city']){
                   // console.log(`State ${selectedState} District ${selectedDistrict}`)
                   return this.renderCard(beneficary)
@@ -268,11 +275,11 @@ class LivelihoodSupport extends Component {
                   return this.renderCard(beneficary);
                 }
               }
-              else if (selectedDonationAmount>=parseInt(beneficary.needs.split(" ")[1]) && selectedState === 'All States'){
+              else if (selectedDonationAmount>=parseInt(beneficary.needs) && selectedState === 'All States'){
                 // console.log(`Just Donation ${selectedDonationAmount}`)
                 return this.renderCard(beneficary);
               }
-              else if (selectedDonationAmount>=parseInt(beneficary.needs.split(" ")[1]) && selectedState===beneficary.state){
+              else if (selectedDonationAmount>=parseInt(beneficary.needs) && selectedState===beneficary.state){
                 if(selectedDistrict==beneficary['district/city']){
                   // console.log(`Donation ${selectedDonationAmount} + State ${selectedState} + District ${selectedDistrict}`)
                   return this.renderCard(beneficary)
@@ -367,7 +374,6 @@ class LivelihoodSupport extends Component {
                         {
                         <Grid item xs={12} md={9} lg={4}>
                             <Slider
-                                defaultValue={this.state.amountList[this.state.amountList.length-1]+1000}
                                 value={selectedDonationAmount}
                                 onChange={this.setSelectedDonationAmount}
                                 step={500}
@@ -385,7 +391,7 @@ class LivelihoodSupport extends Component {
                         {
                             beneficiaries.map((b)=>{
                                 if(b.isChecked==true){
-                                count+=parseInt(b.needs.split(" ")[1]);
+                                count+=parseInt(b.needs);
                                 this.state.amountToBeDonated = count;
                                 return(
                                     <Fab key={b.id} size="small" variant="extended" color="primary" aria-label="add" className={classes.fabButton}>
@@ -405,12 +411,12 @@ class LivelihoodSupport extends Component {
                             style={{ backgroundColor: '#000'}}
                             onClick={() => this.payUMoney(count)}
                         >
-                            Donate Rs.{count}
+                            Donate INR {count}
                         </Button>
                         }
                     </Grid>
                     <Spacer height={theme.spacing(2)} />
-                        { beneficiariesLoading ? <Grid container direction="row" justify="center" alignItems="center"><FlowerSpinner color="#0122ff" size="40"/></Grid> : this.renderAllCards() }
+                        { beneficiariesLoading ? <Grid container direction="row" justify="center" alignItems="center"><RadarSpinner color="#0122ff" size="40"/></Grid> : this.renderAllCards() }
                     <Spacer height={theme.spacing(2)} />
                     </Box>
                 </Container>

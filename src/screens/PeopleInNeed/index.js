@@ -408,7 +408,7 @@ class PeopleInNeed extends React.Component {
                 style={{ backgroundColor: '#000'}}
                 onClick={() => this.payUMoney(count)}
               >
-                Donate Rs.{count}
+                Donate INR {count}
               </Button>
             }
           </Grid>
