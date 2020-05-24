@@ -52,8 +52,8 @@ class MainCTABtns extends React.Component {
               <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
                 <Typography variant="h5" component="h5">Mental Health Services</Typography>
                 <Typography variant="body1" style={{ fontSize: '1rem', paddingTop: '10px'}}>
-                  {'**MENTAL HEALTH PAGE EXPLAINER BLOCK**'}
-                  {'**MENTAL HEALTH PAGE EXPLAINER BLOCK**'}
+                  {'**MENTAL HEALTH PAGE EXPLAINING BLOCK**'}
+                  {'**MENTAL HEALTH PAGE EXPLAINING BLOCK**'}
                 </Typography>
               </Box>
               <Link href="/livelihoodSupport">
