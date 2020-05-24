@@ -18,7 +18,7 @@ const AppRouter = () => (
       <Route path="/enablerLanding" component={EnablerPage} exact={true} />
       <Route path="/peopleInNeed" component={PeopleInNeedPage} exact={true} />
       <Route path="/livelihoodSupport" component={LivelihoodSupport} exact={true}/>
-      <Route path="/transportation" component={Transportation} exact={true} />
+      <Route path="/transportAssistance" component={Transportation} exact={true} />
       <Route component={NotFoundPage} />
     </Switch>
   </Router>

@@ -237,7 +237,7 @@ class LivelihoodSupport extends Component {
                             expanded &&
                             <Box>
                                 <Typography variant="h6" component="h3" color={'textSecondary'}>
-                                    Income : <Chip className={classes.incomeChip} label={beneficiary.income}></Chip>
+                                    Income : <Chip className={classes.incomeChip} label={`Rs. ${beneficiary.income}`}></Chip>
                                 </Typography>
                                 <Typography variant="h6" component="h3" color={'textSecondary'}>Pre-pandemic Occupation : {beneficiary.prePandemicOccupation}</Typography>
                             </Box>
