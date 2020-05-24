@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Tooltip, createMuiTheme, MuiThemeProvider, Fab, Card, CardContent, Paper, ThemeProvider } from '@material-ui/core';
 import Spacer from '../../components/Spacer';
+import Navbar from '../LandingPage/components/NavBar';
+import ExplainerBlock from '../../components/ExplainerBlock';
 
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 
@@ -168,9 +170,15 @@ class Transportation extends Component {
 
         return(
             <>
-                <Spacer height={theme.spacing(2)} />
-                    { beneficiariesLoading ? <Grid container direction="row" justify="center" alignItems="center"><RadarSpinner color="#0122ff" size="40"/></Grid> : this.renderAllCards() }
-                <Spacer height={theme.spacing(2)} />
+                <Navbar />
+                <ExplainerBlock />
+                <Container maxWidth="lg" style={{ padding: 0 }}>
+                    <Box className={classes.container}>
+                        <Spacer height={theme.spacing(2)} />
+                            { beneficiariesLoading ? <Grid container direction="row" justify="center" alignItems="center"><RadarSpinner color="#0122ff" size="40"/></Grid> : this.renderAllCards() }
+                        <Spacer height={theme.spacing(2)} />
+                    </Box>
+                </Container>
             </>
         )
     }
