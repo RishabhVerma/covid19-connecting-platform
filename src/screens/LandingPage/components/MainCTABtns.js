@@ -37,7 +37,7 @@ class MainCTABtns extends React.Component {
             <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
               <Typography variant="h5" component="h5">Transport Assistance</Typography>
               <Typography variant="body1" style={{ fontSize: '1rem', paddingTop: '10px'}}>
-                {'Donate directly to the link below, providing a 2-week supply of emergency food and hygiene products for a family of 4.'}
+                {'Donate directly to the link below, helping stranded migrant workers reach home safely.'}
               </Typography>
             </Box>
             <Link href="/transportAssistance">
@@ -52,12 +52,13 @@ class MainCTABtns extends React.Component {
               <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
                 <Typography variant="h5" component="h5">Mental Health Services</Typography>
                 <Typography variant="body1" style={{ fontSize: '1rem', paddingTop: '10px'}}>
-                  {'Donate directly to the link below, providing a livelihood to the daily wage earners for a month.'}
+                  {'**MENTAL HEALTH PAGE EXPLAINER BLOCK**'}
+                  {'**MENTAL HEALTH PAGE EXPLAINER BLOCK**'}
                 </Typography>
               </Box>
               <Link href="/livelihoodSupport">
                 <Button className={classes.CTAbtns} variant="contained" color="primary">
-                  {'SUPPORT A LIVELIHOOD NOW!'}
+                  {'DONATE NOW!'}
                 </Button>
               </Link>
             </Paper>
