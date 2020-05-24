@@ -9,6 +9,7 @@ import EnablerPage from '../screens/Enabler';
 import CovidLandingPage from '../screens/LandingPage';
 import PeopleInNeedPage from '../screens/PeopleInNeed';
 import LivelihoodSupport from '../screens/LivelihoodSupport';
+import Transportation from '../screens/Transportation';
 
 const AppRouter = () => (
   <Router history={history}>
@@ -17,6 +18,7 @@ const AppRouter = () => (
       <Route path="/enablerLanding" component={EnablerPage} exact={true} />
       <Route path="/peopleInNeed" component={PeopleInNeedPage} exact={true} />
       <Route path="/livelihoodSupport" component={LivelihoodSupport} exact={true}/>
+      <Route path="/transportation" component={Transportation} exact={true} />
       <Route component={NotFoundPage} />
     </Switch>
   </Router>

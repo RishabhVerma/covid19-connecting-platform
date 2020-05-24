@@ -41,6 +41,7 @@ const customizedTheme = createMuiTheme({
         }
     }
 })
+
 const styles = theme => ({
     container: {
       display: 'flex',
