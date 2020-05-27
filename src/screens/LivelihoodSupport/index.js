@@ -41,6 +41,7 @@ const customizedTheme = createMuiTheme({
         }
     }
 })
+
 const styles = theme => ({
     container: {
       display: 'flex',
@@ -236,7 +237,7 @@ class LivelihoodSupport extends Component {
                             expanded &&
                             <Box>
                                 <Typography variant="h6" component="h3" color={'textSecondary'}>
-                                    Income : <Chip className={classes.incomeChip} label={beneficiary.income}></Chip>
+                                    Income : <Chip className={classes.incomeChip} label={`Rs. ${beneficiary.income}`}></Chip>
                                 </Typography>
                                 <Typography variant="h6" component="h3" color={'textSecondary'}>Pre-pandemic Occupation : {beneficiary.prePandemicOccupation}</Typography>
                             </Box>
@@ -302,7 +303,7 @@ class LivelihoodSupport extends Component {
         return(
             <>
                 <NavBar />
-                <ExplainerBlock />
+                <ExplainerBlock header1='600INR provides a family with 2 week supply of food & essentials.'/>
                 <Container maxWidth="lg" style={{ padding: 0 }}>
                 <Box className={classes.container}>
                     <Spacer height={theme.spacing(2)} />

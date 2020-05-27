@@ -49,13 +49,13 @@ class EnablerLandingPage extends React.Component {
     return (
       <>
         <NavBar />
-        <ExplainerBlock />
+        <ExplainerBlock header1='600INR provides a family with 2 week supply of food & essentials.'/>
         <Container maxWidth="lg" style={{ padding: 0 }}>
         <Box className={classes.container}>
             <Spacer height={theme.spacing(2)} />
-            <Typography variant="body1">{'Fill out the form below, letting us know of families and individuals in need in your community. We are currently only operating in 4 states - Delhi, UP, MP & Assam.'}</Typography>
+            <Typography variant="body1">{'Fill out the form below, letting us know if you or someone you know needs support. We are currently only operating in 4 states - Delhi, UP, MP & Assam.'}</Typography>
             <br />
-            <iframe frameBorder="0" width={formWidth} style={{height:1000, width: '100%', border:'none'}} src='https://forms.zohopublic.com/r16/form/Covid19/formperma/auewDSXzVKv_zf2OWR6yK9YDLOrnRVZZ5o89sZuEHLw'></iframe>
+            <iframe frameBorder="0" width={formWidth} style={{height:1000, width: '100%', border:'none'}} src='https://forms.zohopublic.in/shobhitjohri20/form/IACPhase2EnablerLandingPage/formperma/u6h-po6z9C2GIl6BwHFeR91NCreLGWXdZhGChWo2Kz8'></iframe>
         </Box>
         </Container>
       </>

@@ -1,6 +1,12 @@
 import React from 'react';
 import { Paper, withStyles, Typography, Button, Grid, Link, Box } from '@material-ui/core';
 
+import DirectionsBusIcon from '@material-ui/icons/DirectionsBus';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+
+
 const styles = theme => ({
   container: {
     padding: theme.spacing(2),
@@ -15,10 +21,26 @@ const styles = theme => ({
     width: '100%',
     backgroundColor: '#000',
   },
-  ctaBtnContainer: {
-    backgroundColor: '#e8e8e8de',
-    padding: theme.spacing(1),
+  formBtns: {
+    width: '50%',
+    backgroundColor: '#25852a'
   },
+  ctaBtnContainer: {
+    background: '#224f79',
+    padding: theme.spacing(1),
+    height: '120px',
+  },
+  typographyStyle: {
+    // fontFamily:'Sniglet' ,
+    fontWeight:'500', 
+    fontSize:'30px',
+    color: '#fff'
+  },
+  icon: {
+    width: '40px',
+    height: '40px',
+    color: '#fff'
+  }
 });
 
 class MainCTABtns extends React.Component {
@@ -26,61 +48,72 @@ class MainCTABtns extends React.Component {
     const { classes, theme } = this.props;
     return (
       <Paper elevation={0} className={classes.container}>
-        <Typography variant="h5" component="h2" style={{ fontWeight: 600 }}>{"WE'RE STRONGER TOGETHER"}</Typography>
-        <br />
-        <Typography variant="body1">{'Families of daily wage earners, who are domestic help, laborers, and so many others, are running out of supplies daily in the midst of the current crisis.'}</Typography>
-        <br />
-        <Typography variant="body1">{'IAC is stepping up to identify and locate vulnerable people to provide emergency rations and hygiene products – this is a community initiative to connect supplies with those in need! We are actively working in 4 states, Delhi NCR, Uttar Pradesh, Madhya Pradesh, Assam!'}</Typography>
-        <br />
-        <Typography variant="body1">{'Our initiative is unique because of our crowdsourced beneficiary list, you join the community effort, too. You can help in two ways.'}</Typography> 
-        <br />
-        <Grid container spacing={2}>
-          <Grid item lg={1} />
-          <Grid item xs={12} md={12} lg={5}>
-            <Paper elevation={0} className={classes.ctaBtnContainer}>
+        <Grid container spacing={3}>
+          <Grid item lg={2} />
+
+          <Grid item xs={12} md={12} lg={4}>
+            <Link href="/gharKiAas">
+              <Paper elevation={3} className={classes.ctaBtnContainer}>
+                <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
+                  <DirectionsBusIcon className={classes.icon} />
+                  <Typography className={classes.typographyStyle} variant="h5" component="h5">Ghar Ki Aas</Typography>
+                  <Typography style={{color: '#fff', fontWeight: '500', fontStyle: 'Italic', fontSize: '16px'}} variant="p" component="p">Transportation for stranded workers</Typography>
+                </Box>            
+              </Paper>
+            </Link>
+          </Grid>
+          
+          <Grid item xs={12} md={12} lg={4}>
+            <Link href="/mentalHealthSupport">
+              <Paper elevation={3} className={classes.ctaBtnContainer}>
+                <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
+                  <FavoriteIcon className={classes.icon} />
+                  <Typography className={classes.typographyStyle} variant="h5" component="h5">Mental Health</Typography>
+                  <Typography style={{color: '#fff', fontWeight: '500', fontStyle: 'Italic', fontSize: '16px'}} variant="p" component="p">Hotline support provided</Typography>
+                </Box>            
+              </Paper>
+            </Link>
+          </Grid>
+
+          <Grid item lg={2} />
+
+          <Grid item lg={2} />
+          <Grid item xs={12} md={12} lg={4}>
+            <Link href="/peopleInNeed">
+              <Paper elevation={3} className={classes.ctaBtnContainer}>
+                <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
+                  <AccountBalanceWalletIcon className={classes.icon} />
+                  <Typography className={classes.typographyStyle} variant="h5" component="h5">{'Ration & Hygiene Relief'}</Typography>
+                  <Typography style={{color: '#fff', fontWeight: '500', fontStyle: 'Italic', fontSize: '16px'}} variant="p" component="p">Kits packaged and distributed</Typography>
+                </Box>            
+              </Paper>
+            </Link>
+          </Grid>
+
+          <Grid item xs={12} md={12} lg={4}>
+            <Link href="/livelihoodSupport">
+              <Paper elevation={3} className={classes.ctaBtnContainer}>
+                <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
+                  <BusinessCenterIcon className={classes.icon} />
+                  <Typography className={classes.typographyStyle} variant="h5" component="h5">Livelihood Support</Typography>
+                  <Typography style={{color: '#fff', fontWeight: '500', fontStyle: 'Italic', fontSize: '16px'}} variant="p" component="p">Helping small business owners</Typography>
+                </Box>            
+              </Paper>
+            </Link>
+          </Grid>
+          <Grid item lg={2} />
+          
+          <Grid item lg={12}>
             <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
               <Typography variant="body1" style={{ fontSize: '1rem' }}>
                 {'Fill out the form below, letting us know of families and individuals in need in your community!'}
               </Typography>
-            </Box>
-            <Link href="/enablerLanding">
-              <Button className={classes.CTAbtns} variant="contained" color="primary">{'KNOW SOMEONE WHO NEEDS FOOD?'}</Button>
-            </Link>
-            <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
-              <Typography variant="body1" style={{ fontSize: '1rem', paddingTop: '10px'}}>
-                {'Donate directly to the link below, providing a 2-week supply of emergency food and hygiene products for a family of 4.'}
-              </Typography>
-            </Box>
-            <Link href="/peopleInNeed">
-              <Button className={classes.CTAbtns} variant="contained" color="primary">
-                {'DONATE NOW!'}
-              </Button>
-            </Link>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={12} lg={5}>
-            <Paper elevation={0} className={classes.ctaBtnContainer}>
-              <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
-                <Typography variant="body1" style={{ fontSize: '1rem' }}>
-                  {'Fill out the form below, letting us know of families and individuals in need in your community!'}
-                </Typography>
-              </Box>
               <Link href="/enablerLanding">
-                <Button className={classes.CTAbtns} variant="contained" color="primary">{'KNOW SOMEONE WHO NEEDS SUPPORT TO LOCAL BUSINESS?'}</Button>
+                <Button className={classes.formBtns} variant="contained" color="primary">{'KNOW SOMEONE WHO NEEDS HELP?'}</Button>
               </Link>
-              <Box style={{ textAlign: 'center', paddingBottom: theme.spacing(1) }}>
-                <Typography variant="body1" style={{ fontSize: '1rem', paddingTop: '10px'}}>
-                  {'Donate directly to the link below, providing a livelihood to the daily wage earners for a month.'}
-                </Typography>
-              </Box>
-              <Link href="/livelihoodSupport">
-                <Button className={classes.CTAbtns} variant="contained" color="primary">
-                  {'SUPPORT A LIVELIHOOD NOW!'}
-                </Button>
-              </Link>
-            </Paper>
+            </Box>
           </Grid>
-          <Grid item lg={1} />
+
         </Grid>
         <br />
         <Typography variant="body1">Interested in volunteering? Contact us to become an on-ground enabler, to package and deliver emergency kits to those in need! <strong>Call 9871192983.</strong></Typography>

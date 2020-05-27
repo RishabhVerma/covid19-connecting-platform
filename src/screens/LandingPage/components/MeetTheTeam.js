@@ -72,8 +72,8 @@ const TEAM = [
   {
     id: 3,
     name: 'Jessie',
-    title: 'Clinton Fellow',
-    org: 'AIF India',
+    title: 'AIF Clinton Fellow',
+    org: 'American India Foundation',
     img: JessieImage,
     bgColor: '#e8e8e8de',
     bio: 'UCLA alum, she is working on an education campaign for tribal girls in Satpura, MP. Jessie is lending her marketing and communication skills for IAC.'
@@ -156,7 +156,7 @@ class MeetTheTeam extends React.Component {
     return (
       <>
       <Paper elevation={0} className={classes.container}>
-        <Typography variant="h5" component="h2" style={{ fontWeight: 600 }}>{'MEET THE TEAM.'}</Typography>
+        <Typography variant="h5" component="h2" style={{ fontWeight: 600 }}>{'MEET THE TEAM'}</Typography>
         <Spacer height={theme.spacing(2)} />
       </Paper>
       <Grid container>
