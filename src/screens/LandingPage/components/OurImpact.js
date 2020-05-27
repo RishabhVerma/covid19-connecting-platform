@@ -53,13 +53,13 @@ const ANALYTICS = [
   {
     "id": 1,
     "background": "#ffce00",
-    "highlight": "14,000+",
+    "highlight": "16,000+",
     "text1": "Families helped.",
   },
   {
     "id": 2,
     "background": "#f7dd70",
-    "highlight": "340,000+",
+    "highlight": "1,79,200+",
     "text1": "meals worth of ration delivered.",
   },
   {

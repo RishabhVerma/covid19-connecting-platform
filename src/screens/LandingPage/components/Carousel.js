@@ -4,9 +4,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { withStyles, Box, Typography, Fab } from '@material-ui/core';
 
-import CarouselSlide1 from '../../../assets/img/carousel/slide1.jpg';
-import CarouselSlide2 from '../../../assets/img/carousel/slide2.jpg';
-
 
 const styles = theme => ({
   slideContainer: {
@@ -47,20 +44,6 @@ const styles = theme => ({
   }
 });
 
-const SLIDES = [
-  {
-    "id": 1,
-    "text": "Manika didi sells fish at the market. The market is closed now and so is her access to livelihood.",
-    "img": CarouselSlide1,
-    "bgPosition": 'center center',
-  },
-  {
-    "id": 2,
-    "text": "Roshni didi makes jhadus and sells it in Delhi. Her household runs on her everyday wage. She has none now.",
-    "img": CarouselSlide2,
-    "bgPosition": '10% 30%',
-  }
-];
 
 class CarouselSlider extends React.Component {
 
@@ -74,7 +57,7 @@ class CarouselSlider extends React.Component {
   handleLeftClick = () => {
     const { slideIndex } = this.state;
     if (slideIndex == 0) {
-      this.slider.slickGoTo(SLIDES.length-1);
+      this.slider.slickGoTo(this.props.slides.length-1);
     } else {
       this.slider.slickGoTo(slideIndex-1);
     }
@@ -82,7 +65,7 @@ class CarouselSlider extends React.Component {
 
   handleRightClick = () => {
     const { slideIndex } = this.state;
-    if (slideIndex >= SLIDES.length-1) {
+    if (slideIndex >= this.props.slides.length-1) {
       this.slider.slickGoTo(0);
     } else {
       this.slider.slickGoTo(slideIndex+1);
@@ -121,7 +104,7 @@ class CarouselSlider extends React.Component {
     };
     return (
       <Slider ref={slider => (this.slider = slider)} {...settings}>
-        { SLIDES.map(slide => this.renderSlide(slide)) }
+        { this.props.slides.map(slide => this.renderSlide(slide)) }
       </Slider>
     );
   }

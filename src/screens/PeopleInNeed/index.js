@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 
-import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Fab, Link } from '@material-ui/core';
+import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Fab } from '@material-ui/core';
 import { SemipolarSpinner } from 'react-epic-spinners';
 
 import PersonIcon from '@material-ui/icons/Person';
+
 import Spacer from '../../components/Spacer';
+import NavBar from '../LandingPage/components/NavBar'
+import ExplainerBlock from '../../components/ExplainerBlock';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -19,11 +22,13 @@ import CardContent from '@material-ui/core/CardContent';
 
 import axios from 'axios';
 
-import NavBar from '../LandingPage/components/NavBar';
-import ExplainerBlock from '../../components/ExplainerBlock';
+var sha512 = require("sha512")
 
 
 const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coronaIndia/masterData';
+
+let hashSequence;
+
 
 const styles = theme => ({
   container: {
@@ -38,6 +43,9 @@ const styles = theme => ({
   notVerifiedChip: {
     color: '#d14836',
     borderColor: '#d14836'
+  },
+  cardMain:{
+    background: 'linear-gradient(0deg, rgba(47,189,195,1) 12%, rgba(36,152,110,1) 60%);',
   },
   cardTitle: {
     display: 'flex',
@@ -77,6 +85,7 @@ class PeopleInNeed extends React.Component {
       beneficaries: [],
       selectedBeneficary : {},
       states : {},
+      amountToBeDonated : 0,
     };
   }
 
@@ -123,7 +132,7 @@ class PeopleInNeed extends React.Component {
         amountList.push(b.donationAmount)
       }
     })
-    this.setState({ beneficariesLoading: false, beneficaries: beneficiariesCopy });
+    this.setState({ beneficariesLoading: false, beneficaries: beneficiariesCopy, amountList : amountList.sort((a, b)=>a-b) });
   }
 
   handleBeneficaryCardToggle = (id) => {
@@ -142,6 +151,42 @@ class PeopleInNeed extends React.Component {
     this.setState({ beneficaries: beneficaries });
   }
 
+  generateHashKey = (txnId, amount) => {
+    hashSequence = `wu5IxsVg|${txnId}|${amount}|test product info|Saquib||||||||||||UrnK28wI9Y`;
+    let hash = sha512(hashSequence)
+
+    return hash.toString("hex")
+  }
+
+  payUMoney = (count) => {
+    
+    console.log(count)
+    let txnId = new Date().toLocaleString().replace(/\D+/g, '')
+    let hashKey = this.generateHashKey(txnId, this.state.amountToBeDonated)
+    
+    var RequestData = {
+      key: 'wu5IxsVg',
+      txnid: txnId,
+      hash: hashKey,
+      amount: this.state.amountToBeDonated,
+      firstname: 'Saquib',
+      email: '',
+      phone: '',
+      productinfo: 'test product info',
+      surl : 'https://indiagainstcorona.com',
+      furl: 'https://indiagainstcorona.com',
+      mode:'dropout'
+    };
+
+    window.bolt.launch(RequestData, 
+      {
+        responseHandler : function(response){console.log(response)}
+      }, 
+      {
+        catchException : function(response){console.log(response)}
+      }
+    )
+  }
 
   renderCard(beneficary) {
     const { theme, classes } = this.props;
@@ -150,7 +195,7 @@ class PeopleInNeed extends React.Component {
     return (
       <Grid item xs={12} md={6} lg={4} key={beneficary.id}>
         <Card>
-          <CardContent>
+          <CardContent className={classes.cardMain}>
             <Box className={classes.cardTitle}>
               <Typography gutterBottom variant="h5" component="h2">{beneficary.name}</Typography>
               <Checkbox
@@ -256,11 +301,10 @@ class PeopleInNeed extends React.Component {
     const { selectedState, selectedDistrict, selectedDonationAmount, beneficariesLoading, beneficaries } = this.state;
     let count = 0;
     let allStates = Object.keys(this.state.states)
-
     return (
       <>
         <NavBar />
-        <ExplainerBlock />
+        <ExplainerBlock header1='600INR provides a family with 2 week supply of food & essentials.'/>
         <Container maxWidth="lg" style={{ padding: 0 }}>
         <Box className={classes.container}>
           <Spacer height={theme.spacing(2)} />
@@ -329,35 +373,11 @@ class PeopleInNeed extends React.Component {
               </Grid>
             }
             {
-              // <Grid item xs={12} md={9} lg={4}>
-              //   <FormControl variant="outlined" className={classes.formControl}>
-              //     <InputLabel id="state-filter-label">Donation Amount</InputLabel>
-              //     <Select
-              //       labelId="donation-amount-filter-label"
-              //       id="donation-amount-filter"
-              //       value={selectedDonationAmount}
-              //       label="Donation Amount"
-              //       onChange={this.setSelectedDonationAmount}                    
-              //     >
-              //       <MenuItem value={0}> Select Donation Amount </MenuItem>
-              //       {
-              //         this.state.amountList.map((a)=>{
-              //           return(
-              //             <MenuItem key={a} value={a}> Rs.{a} </MenuItem>
-              //           )
-              //         })
-              //       }
-              //     </Select>
-              //   </FormControl>                
-              // </Grid>
-            }
-            {
               <Grid item xs={12} md={9} lg={4}>
-                {/* <InputLabel id="state-filter-label">Filter By Donation Amount</InputLabel> */}
                 <Slider
+                  defaultValue={this.state.amountList[this.state.amountList.length-1]+1000}
                   value={selectedDonationAmount}
                   onChange={this.setSelectedDonationAmount}
-                  getAriaValueText={this.getDonationValue}
                   aria-labelledby="continuous-slider"
                   max={this.state.amountList[this.state.amountList.length-1]+1000}
                   valueLabelDisplay="auto"
@@ -371,6 +391,7 @@ class PeopleInNeed extends React.Component {
               beneficaries.map((b)=>{
                 if(b.isChecked==true){
                   count+=b.donationAmount;
+                  this.state.amountToBeDonated = count;
                   return(
                       <Fab key={b.id} size="small" variant="extended" color="primary" aria-label="add" className={classes.fabButton}>
                         <PersonIcon />
@@ -382,17 +403,15 @@ class PeopleInNeed extends React.Component {
             }
             {
               (count>0) &&
-              <Link href="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA" target="_blank">
-                <Button 
-                  size="small" 
-                  variant="contained" 
-                  color="primary" 
-                  style={{ backgroundColor: '#000'}}
-                >
-                  Donate Rs.{count}
-                </Button>
-              </Link>
-
+              <Button 
+                size="small" 
+                variant="contained" 
+                color="primary" 
+                style={{ backgroundColor: '#000'}}
+                onClick={() => this.payUMoney(count)}
+              >
+                Donate INR {count}
+              </Button>
             }
           </Grid>
           <Spacer height={theme.spacing(2)} />
