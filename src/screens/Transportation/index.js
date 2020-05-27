@@ -1,25 +1,56 @@
 import React, { Component } from 'react';
 import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, Slider, Tooltip, createMuiTheme, MuiThemeProvider, Fab, Card, CardContent, Paper, ThemeProvider } from '@material-ui/core';
 import Spacer from '../../components/Spacer';
-import Navbar from '../LandingPage/components/NavBar';
+import NavBar from '../LandingPage/components/NavBar'
 import ExplainerBlock from '../../components/ExplainerBlock';
+import Carousel from '../LandingPage/components/Carousel';
 
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 
 import { RadarSpinner } from 'react-epic-spinners';
 
-import axios from 'axios';
+import CarouselImage1 from '../../assets/img/carousel/gharKiAas/slide1.jpg';
+import CarouselImage2 from '../../assets/img/carousel/gharKiAas/slide2.jpg';
+import CarouselImage3 from '../../assets/img/carousel/gharKiAas/slide3.jpg';
 
+const SLIDES = [
+    {
+        "id": 1,
+        "text": "",
+        "img": CarouselImage1,
+        "bgPosition": 'center center',
+    },
+    {
+        "id": 2,
+        "text": "",
+        "img": CarouselImage2,
+        "bgPosition": '10% 30%',
+    },
+    {
+        "id": 3,
+        "text": "",
+        "img": CarouselImage3,
+        "bgPosition": '10% 30%',
+    },
+  ];
+
+import axios from 'axios';
 const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coronaIndia/transportation';
 
 const themes = createMuiTheme();
 
 themes.typography.h5 = {
+    '@media (min-width:600px)': {
+      fontSize: '1.5rem',
+    },
     [themes.breakpoints.up('md')] : {
-        fontSize: '1.3rem',
+        fontSize: '1.2rem',
+    },
+    [themes.breakpoints.down('sm')] : {
+        fontSize: '0.5rem',
     },
     [themes.breakpoints.down('md')] : {
-        fontSize: '1.5rem'
+        fontSize: '0.7rem',
     }
 }
 
@@ -38,9 +69,6 @@ const styles = theme => ({
     neededChip: {
       color: '#00000',
       backgroundColor: '#96e0a1'
-    },
-    cardMain: {
-        background : 'linear-gradient(338deg, rgba(242,34,34,1) 0%, rgba(255,178,233,1) 100%)'
     },
     cardTitle: {
       display: 'flex',
@@ -71,7 +99,7 @@ const styles = theme => ({
     mainCard : {
         display: 'flex',
         flexDirection: 'row',
-        background: '#f2f3f5',
+        background: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(242,242,242,1) 100%)',
         justifyContent: 'space-between',
     },
     extraDetails : {
@@ -106,8 +134,8 @@ class Transportation extends Component {
 
         return(
             <Grid item xs={12} md={6} lg={4} key={beneficiary.id}>
-                <Card className={classes.mainCard} elevation={3}>
-                    <CardContent>
+                <Paper className={classes.mainCard} elevation={3}>
+                    <CardContent style={{margin:'0 auto'}}>
                         <Box className={classes.citiesCard}>
                             <Box style={{padding: '10px'}} border={1} borderRadius={5}>
                                 <Typography style={{fontSize: '10px', color: '#8c8989', fontWeight: '500'}}>Source City</Typography>
@@ -131,22 +159,22 @@ class Transportation extends Component {
                         </Box>
                         <Box style={{display: 'block', margin: '10px'}}>
                             <Paper className={classes.extraDetails} elevation={2}>
-                                Number of migrants : <Box style={{margin: '0 5px', padding: '1px 10px', background: '#000', color: '#fff'}} border={1} borderRadius={15}>{beneficiary.noOfMigrants}</Box>
+                                Number of migrants : <Box style={{margin: '0 5px', padding: '1px 10px', background: '#224f79', color: '#fff'}} border={1} borderRadius={15}>{beneficiary.noOfMigrants}</Box>
                             </Paper>
                             <Paper className={classes.extraDetails} elevation={2}>
-                                Donation Amount : <Box style={{margin: '0 5px', padding: '1px 6px', background: '#000', color: '#fff'}} border={1} borderRadius={15}>Rs.{beneficiary.donationAmount}</Box>
+                                Donation Amount : <Box style={{margin: '0 5px', padding: '1px 6px', background: '#224f79', color: '#fff'}} border={1} borderRadius={15}>Rs.{beneficiary.donationAmount}</Box>
                             </Paper>
                             <Paper className={classes.extraDetails} elevation={2}>
-                                Amount Raised : <Box style={{margin: '0 5px', padding: '1px 6px', background: '#000', color: '#fff'}} border={1} borderRadius={15}>Rs.{beneficiary.amountRaised=="" || beneficiary.amountRaised==undefined ? 0 : beneficiary.amountRaised}</Box>
+                                Amount Raised : <Box style={{margin: '0 5px', padding: '1px 6px', background: '#224f79', color: '#fff'}} border={1} borderRadius={15}>Rs.{beneficiary.amountRaised=="" || beneficiary.amountRaised==undefined ? 0 : beneficiary.amountRaised}</Box>
                             </Paper>
                         </Box>
                         <Box style={{display: 'flex', alignItems: 'center'}}>
-                            <Button style={{margin: '20px', color: '#0051ff', borderWidth: '3px', borderColor: '#0051ff', width: '100%'}} variant="outlined">
+                            <Button style={{margin: '20px', color: '#224f79', borderWidth: '3px', borderColor: '#224f79', width: '100%'}} variant="outlined">
                                 Donate
                             </Button>
                         </Box>
                     </CardContent>
-                </Card>
+                </Paper>
             </Grid>
         )
     }
@@ -170,10 +198,55 @@ class Transportation extends Component {
 
         return(
             <>
-                <Navbar />
-                <ExplainerBlock />
+                <NavBar />
+                <Carousel slides={SLIDES}/>        
+                <ExplainerBlock header1="Support stranded migrant families and individuals through our Ghar ki Aas program."/>
                 <Container maxWidth="lg" style={{ padding: 0 }}>
                     <Box className={classes.container}>
+                        <Spacer height={theme.spacing(2)} />
+                        <Typography variant="h4" component="h1">#GharKiAas</Typography>
+                        <br />
+                        <Typography variant="body1">
+                            <strong>
+                            {
+                                `Being at home during this crisis shouldn’t be a luxury. We have mobilised our resources to help support the most vulnerable community in this time of crisis — stranded migrant families and individuals.`
+                            }
+                            </strong>
+                            <br/>
+                            <strong><em>{`Ghar Ki Aas is providing:`}</em></strong>
+                        </Typography>
+
+                        <Typography style={{paddingLeft: '20px', background: '#dfdfdf'}} variant="body1">
+                            <strong>1. Travel : </strong>{` From the place of origin to the destination by bus (AC with toilet access).`}                            
+                        </Typography>
+
+                        <Typography style={{paddingLeft: '20px', background: '#dfdfdf'}} variant="body1">
+                            <strong>2. Meals : </strong>{` Two cooked and hygienically packed meals & water.`}
+                        </Typography>
+
+                        <Typography style={{paddingLeft: '20px', background: '#dfdfdf'}} variant="body1">
+                            <strong>3. Sanitation kit : </strong>{` including a face mask, gloves, sanitizer, and if needed, sanitary napkins.`}
+                        </Typography>
+
+                        <Typography style={{paddingLeft: '20px', background: '#dfdfdf'}} variant="body1">
+                            <strong>4. Outside booking assistance : </strong>{` If a small group is in need for travel, and we do not have any bus scheduled for that area, we are arranging their tickets privately to help them board a bus already scheduled for that destination.`}
+                        </Typography>
+
+                        <Typography style={{paddingLeft: '20px', background: '#dfdfdf'}} variant="body1">
+                            <strong>5. Transit costs : </strong>{` The minor operational costs which includes approvals from government, toll roads, contingencies, tips for service providers, and other operating costs.`}
+                        </Typography>
+
+                        <br />
+                        <Typography variant="body1">
+                            {' You can help stranded families and individuals by selecting a group to sponsor below. You can directly support their trip home.'}
+                        </Typography>
+                        <br />
+                        <Typography variant="body1" align="justify">
+                            <em>
+                            {'[Select one or more option from the list to support trip home to a stranded migrant worker.]'}
+                            </em>
+                        </Typography>
+                        <br />
                         <Spacer height={theme.spacing(2)} />
                             { beneficiariesLoading ? <Grid container direction="row" justify="center" alignItems="center"><RadarSpinner color="#0122ff" size="40"/></Grid> : this.renderAllCards() }
                         <Spacer height={theme.spacing(2)} />

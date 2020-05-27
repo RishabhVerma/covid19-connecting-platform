@@ -7,6 +7,8 @@ import { SemipolarSpinner } from 'react-epic-spinners';
 import PersonIcon from '@material-ui/icons/Person';
 
 import Spacer from '../../components/Spacer';
+import NavBar from '../LandingPage/components/NavBar'
+import ExplainerBlock from '../../components/ExplainerBlock';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -21,9 +23,6 @@ import CardContent from '@material-ui/core/CardContent';
 import axios from 'axios';
 
 var sha512 = require("sha512")
-
-import NavBar from '../LandingPage/components/NavBar';
-import ExplainerBlock from '../../components/ExplainerBlock';
 
 
 const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coronaIndia/masterData';
@@ -44,6 +43,9 @@ const styles = theme => ({
   notVerifiedChip: {
     color: '#d14836',
     borderColor: '#d14836'
+  },
+  cardMain:{
+    background: 'linear-gradient(0deg, rgba(47,189,195,1) 12%, rgba(36,152,110,1) 60%);',
   },
   cardTitle: {
     display: 'flex',
@@ -193,7 +195,7 @@ class PeopleInNeed extends React.Component {
     return (
       <Grid item xs={12} md={6} lg={4} key={beneficary.id}>
         <Card>
-          <CardContent>
+          <CardContent className={classes.cardMain}>
             <Box className={classes.cardTitle}>
               <Typography gutterBottom variant="h5" component="h2">{beneficary.name}</Typography>
               <Checkbox
@@ -302,7 +304,7 @@ class PeopleInNeed extends React.Component {
     return (
       <>
         <NavBar />
-        <ExplainerBlock />
+        <ExplainerBlock header1='600INR provides a family with 2 week supply of food & essentials.'/>
         <Container maxWidth="lg" style={{ padding: 0 }}>
         <Box className={classes.container}>
           <Spacer height={theme.spacing(2)} />

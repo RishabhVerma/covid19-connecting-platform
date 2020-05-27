@@ -303,7 +303,7 @@ class LivelihoodSupport extends Component {
         return(
             <>
                 <NavBar />
-                <ExplainerBlock />
+                <ExplainerBlock header1='600INR provides a family with 2 week supply of food & essentials.'/>
                 <Container maxWidth="lg" style={{ padding: 0 }}>
                 <Box className={classes.container}>
                     <Spacer height={theme.spacing(2)} />
