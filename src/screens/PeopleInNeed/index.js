@@ -208,7 +208,6 @@ class PeopleInNeed extends React.Component {
               >
               </Checkbox>
               <Chip
-                variant="outlined"
                 label={verified ? "Verified" : "Not Verified" }
                 className={verified ? classes.verifiedChip : classes.notVerifiedChip}
               />
