@@ -107,6 +107,18 @@ const styles = theme => ({
         justifyContent: 'center', 
         padding: '10px',
         margin: '5px'
+    },
+    donateBtn : {
+        margin: '20px', 
+        color: '#224f79', 
+        borderWidth: '2px', 
+        borderColor: '#224f79', 
+        width: '100%',
+        '&:hover' : {
+            borderWidth: '3px',
+            borderColor: '#3378b8',
+            color: '#3378b8',
+        }
     }
 });
 
@@ -169,7 +181,7 @@ class Transportation extends Component {
                             </Paper>
                         </Box>
                         <Box style={{display: 'flex', alignItems: 'center'}}>
-                            <Button style={{margin: '20px', color: '#224f79', borderWidth: '3px', borderColor: '#224f79', width: '100%'}} variant="outlined">
+                            <Button className={classes.donateBtn} variant="outlined">
                                 Donate
                             </Button>
                         </Box>
