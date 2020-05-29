@@ -5,7 +5,7 @@ import { withStyles, Box, Typography, Chip, Container, Grid, Button, Checkbox, S
 import { RadarSpinner } from 'react-epic-spinners';
 
 import PersonIcon from '@material-ui/icons/Person';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import CancelIcon from '@material-ui/icons/Cancel';
 
 import Spacer from '../../components/Spacer';
@@ -57,7 +57,7 @@ const styles = theme => ({
       backgroundColor: '#96e0a1'
     },
     cardMain: {
-        background : 'linear-gradient(0deg, rgba(73,253,255,1) 0%, rgba(45,140,253,1) 100%)'
+        background : '#224f79'
     },
     cardTitle: {
       display: 'flex',
@@ -211,24 +211,24 @@ class LivelihoodSupport extends Component {
                 <Card>
                     <CardContent className={classes.cardMain}>
                         <Box className={classes.cardTitle}>
-                            <Typography gutterBottom variant="h5" component="h2">{beneficiary.name}</Typography>
+                            <Typography gutterBottom variant="h5" component="h2" style={{color : '#e0e0e0'}}>{beneficiary.name}</Typography>
                             <Checkbox
                                 name={beneficiary.id}
                                 checked={beneficiary.isChecked}
                                 onChange={this.handleCheckboxSelect}
-                                color="primary"
+                                color={`#e0e0e0`}
                                 className={classes.checkbox}
                                 // inputProps={{ 'aria-label': 'primary checkbox' }}
                             >
                             </Checkbox>
                         </Box>
-                        <Typography variant="h6" component="h3" color={'textSecondary'}>
+                        <Typography variant="h6" component="h3"  style={{color : '#e0e0e0'}}>
                             {beneficiary.area}, {beneficiary['district/city']}, {beneficiary.state}
                         </Typography>
-                        <Typography variant="h6" component="h3" color={'textSecondary'}>Mobile : {beneficiary.contact}</Typography>
+                        <Typography variant="h6" component="h3"  style={{color : '#e0e0e0'}}>Mobile : {beneficiary.contact}</Typography>
                         <Box>
                             <MuiThemeProvider theme={customizedTheme}>
-                                    <Typography variant="h6" component="h3" color={'textSecondary'}>
+                                    <Typography variant="h6" component="h3" style={{color : '#e0e0e0'}}>
                                         Needs : <Tooltip title={`Supports : ${beneficiary.supports}`}><Chip className={classes.neededChip} label={`Rs. ${beneficiary.needs}`}></Chip></Tooltip>
                                     </Typography>
                             </MuiThemeProvider>
@@ -236,10 +236,10 @@ class LivelihoodSupport extends Component {
                         {
                             expanded &&
                             <Box>
-                                <Typography variant="h6" component="h3" color={'textSecondary'}>
+                                <Typography variant="h6" component="h3"  style={{color : '#e0e0e0'}}>
                                     Income : <Chip className={classes.incomeChip} label={`Rs. ${beneficiary.income}`}></Chip>
                                 </Typography>
-                                <Typography variant="h6" component="h3" color={'textSecondary'}>Pre-pandemic Occupation : {beneficiary.prePandemicOccupation}</Typography>
+                                <Typography variant="h6" component="h3"  style={{color : '#e0e0e0'}}>Pre-pandemic Occupation : {beneficiary.prePandemicOccupation}</Typography>
                             </Box>
 
                         }
@@ -248,7 +248,7 @@ class LivelihoodSupport extends Component {
                         <Button
                             onClick={() => this.handleBeneficiaryCardToggle(beneficiary.id)}
                         >
-                            {expanded ? <>Collapse{' '}<CancelIcon /></> : <>Expand{' '}<ArrowDropUpIcon /></>}
+                            {expanded ? <>Collapse{' '}<CancelIcon /></> : <>Expand{' '}<ArrowDropDownIcon /></>}
                         </Button>
                     </CardActions>
                 </Card>
@@ -330,11 +330,11 @@ class LivelihoodSupport extends Component {
                         <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="state-filter-label">State</InputLabel>
                             <Select
-                            labelId="state-filter-label"
-                            id="state-filter"
-                            value={selectedState}
-                            label="State"
-                            onChange={this.setSelectedState}
+                                labelId="state-filter-label"
+                                id="state-filter"
+                                value={selectedState}
+                                label="State"
+                                onChange={this.setSelectedState}
                             >
                             <MenuItem value={'All States'}>All States</MenuItem>
                             {

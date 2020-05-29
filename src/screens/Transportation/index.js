@@ -99,7 +99,7 @@ const styles = theme => ({
     mainCard : {
         display: 'flex',
         flexDirection: 'row',
-        background: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(242,242,242,1) 100%)',
+        background: '#224f79',
         justifyContent: 'space-between',
     },
     extraDetails : {
@@ -110,14 +110,14 @@ const styles = theme => ({
     },
     donateBtn : {
         margin: '20px', 
-        color: '#224f79', 
+        color: '#fff', 
         borderWidth: '2px', 
-        borderColor: '#224f79', 
+        borderColor: '#fff', 
         width: '100%',
         '&:hover' : {
             borderWidth: '3px',
-            borderColor: '#3378b8',
-            color: '#3378b8',
+            borderColor: '#4f9e57',
+            color: '#4f9e57',
         }
     }
 });
@@ -150,21 +150,21 @@ class Transportation extends Component {
                     <CardContent style={{margin:'0 auto'}}>
                         <Box className={classes.citiesCard}>
                             <Box style={{padding: '10px'}} border={1} borderRadius={5}>
-                                <Typography style={{fontSize: '10px', color: '#8c8989', fontWeight: '500'}}>Source City</Typography>
+                                <Typography style={{fontSize: '10px', color: '#fff', fontWeight: '200'}}>Source City</Typography>
                                 <ThemeProvider theme={themes}>
-                                    <Typography variant="h5" component="h5">{beneficiary.sourceCity}</Typography>
+                                    <Typography variant="h5" component="h5" style={{color:'#fff'}}>{beneficiary.sourceCity}</Typography>
                                 </ThemeProvider>
                                 <Typography style={{fontSize: '10px', fontWeight: '500'}}>{beneficiary.sourceState}</Typography>
                             </Box>
                             <ArrowRightAltIcon />
                             <Box style={{display: 'block', justifyContent: 'space-between'}} border={1} borderRadius={50}>
-                                <Typography style={{fontSize: '10px', padding: '0 12px'}}>{beneficiary.distance}km</Typography>
+                                <Typography style={{fontSize: '10px', padding: '0 12px', color:'#fff'}}>{beneficiary.distance}km</Typography>
                             </Box>
                             <ArrowRightAltIcon />
                             <Box style={{padding: '10px'}} border={1} borderRadius={5}>
-                                <Typography style={{fontSize: '10px', color: '#8c8989', fontWeight: '500'}}>Destination City</Typography>
+                                <Typography style={{fontSize: '10px', color: '#fff', fontWeight: '200'}}>Destination City</Typography>
                                 <ThemeProvider theme={themes}>
-                                    <Typography variant="h5" component="h5">{beneficiary.destinationCity}</Typography>
+                                    <Typography variant="h5" component="h5" style={{color:'#fff'}}>{beneficiary.destinationCity}</Typography>
                                 </ThemeProvider>
                                 <Typography style={{fontSize: '10px', fontWeight: '500'}}>{beneficiary.sourceState}</Typography>
                             </Box>
