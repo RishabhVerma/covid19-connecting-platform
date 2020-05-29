@@ -110,9 +110,9 @@ const styles = theme => ({
     },
     donateBtn : {
         margin: '20px', 
-        color: '#fff', 
+        color: '#cccccc', 
         borderWidth: '2px', 
-        borderColor: '#fff', 
+        borderColor: '#cccccc', 
         width: '100%',
         '&:hover' : {
             borderWidth: '3px',
@@ -145,39 +145,39 @@ class Transportation extends Component {
         const { theme, classes } = this.props;
 
         return(
-            <Grid item xs={12} md={6} lg={4} key={beneficiary.id}>
+            <Grid item xs={12} md={4} lg={4} key={beneficiary.id}>
                 <Paper className={classes.mainCard} elevation={3}>
                     <CardContent style={{margin:'0 auto'}}>
                         <Box className={classes.citiesCard}>
                             <Box style={{padding: '10px'}} border={1} borderRadius={5}>
-                                <Typography style={{fontSize: '10px', color: '#fff', fontWeight: '200'}}>Source City</Typography>
+                                <Typography style={{fontSize: '10px', color: '#cccccc', fontWeight: '200'}}>Source City</Typography>
                                 <ThemeProvider theme={themes}>
-                                    <Typography variant="h5" component="h5" style={{color:'#fff'}}>{beneficiary.sourceCity}</Typography>
+                                    <Typography variant="h5" component="h5" style={{color:'#cccccc'}}>{beneficiary.sourceCity}</Typography>
                                 </ThemeProvider>
-                                <Typography style={{fontSize: '10px', fontWeight: '500'}}>{beneficiary.sourceState}</Typography>
+                                <Typography style={{fontSize: '10px', fontWeight: '500', color:'#cccccc'}}>{beneficiary.sourceState}</Typography>
                             </Box>
                             <ArrowRightAltIcon />
                             <Box style={{display: 'block', justifyContent: 'space-between'}} border={1} borderRadius={50}>
-                                <Typography style={{fontSize: '10px', padding: '0 12px', color:'#fff'}}>{beneficiary.distance}km</Typography>
+                                <Typography style={{fontSize: '10px', padding: '0 12px', color:'#cccccc'}}>{beneficiary.distance}km</Typography>
                             </Box>
                             <ArrowRightAltIcon />
                             <Box style={{padding: '10px'}} border={1} borderRadius={5}>
-                                <Typography style={{fontSize: '10px', color: '#fff', fontWeight: '200'}}>Destination City</Typography>
+                                <Typography style={{fontSize: '10px', color: '#cccccc', fontWeight: '200'}}>Destination City</Typography>
                                 <ThemeProvider theme={themes}>
-                                    <Typography variant="h5" component="h5" style={{color:'#fff'}}>{beneficiary.destinationCity}</Typography>
+                                    <Typography variant="h5" component="h5" style={{color:'#cccccc'}}>{beneficiary.destinationCity}</Typography>
                                 </ThemeProvider>
-                                <Typography style={{fontSize: '10px', fontWeight: '500'}}>{beneficiary.sourceState}</Typography>
+                                <Typography style={{fontSize: '10px', fontWeight: '500', color:'#cccccc'}}>{beneficiary.destinationState}</Typography>
                             </Box>
                         </Box>
                         <Box style={{display: 'block', margin: '10px'}}>
                             <Paper className={classes.extraDetails} elevation={2}>
-                                Number of migrants : <Box style={{margin: '0 5px', padding: '1px 10px', background: '#224f79', color: '#fff'}} border={1} borderRadius={15}>{beneficiary.noOfMigrants}</Box>
+                                Number of migrants : <Box style={{margin: '0 5px', padding: '1px 10px', background: '#224f79', color: '#cccccc'}} border={1} borderRadius={15}>{beneficiary.noOfMigrants}</Box>
                             </Paper>
                             <Paper className={classes.extraDetails} elevation={2}>
-                                Donation Amount : <Box style={{margin: '0 5px', padding: '1px 6px', background: '#224f79', color: '#fff'}} border={1} borderRadius={15}>Rs.{beneficiary.donationAmount}</Box>
+                                Donation Amount : <Box style={{margin: '0 5px', padding: '1px 6px', background: '#224f79', color: '#cccccc'}} border={1} borderRadius={15}>Rs.{beneficiary.donationAmount}</Box>
                             </Paper>
                             <Paper className={classes.extraDetails} elevation={2}>
-                                Amount Raised : <Box style={{margin: '0 5px', padding: '1px 6px', background: '#224f79', color: '#fff'}} border={1} borderRadius={15}>Rs.{beneficiary.amountRaised=="" || beneficiary.amountRaised==undefined ? 0 : beneficiary.amountRaised}</Box>
+                                Amount Raised : <Box style={{margin: '0 5px', padding: '1px 6px', background: '#224f79', color: '#cccccc'}} border={1} borderRadius={15}>Rs.{beneficiary.amountRaised=="" || beneficiary.amountRaised==undefined ? 0 : beneficiary.amountRaised}</Box>
                             </Paper>
                         </Box>
                         <Box style={{display: 'flex', alignItems: 'center'}}>
