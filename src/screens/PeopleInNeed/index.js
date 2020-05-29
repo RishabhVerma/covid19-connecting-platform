@@ -45,7 +45,7 @@ const styles = theme => ({
     borderColor: '#d14836'
   },
   cardMain:{
-    background: 'linear-gradient(0deg, rgba(47,189,195,1) 12%, rgba(36,152,110,1) 60%);',
+    background: '#224f79',
   },
   cardTitle: {
     display: 'flex',
@@ -197,12 +197,12 @@ class PeopleInNeed extends React.Component {
         <Card>
           <CardContent className={classes.cardMain}>
             <Box className={classes.cardTitle}>
-              <Typography gutterBottom variant="h5" component="h2">{beneficary.name}</Typography>
+              <Typography gutterBottom variant="h5" component="h2" style={{color : '#e0e0e0'}}>{beneficary.name}</Typography>
               <Checkbox
                 name={beneficary.id}
                 checked={beneficary.isChecked}
                 onChange={this.handleCheckboxSelect}
-                color="primary"
+                color={`#e0e0e0`}
                 className={classes.checkbox}
                 // inputProps={{ 'aria-label': 'primary checkbox' }}
               >
@@ -212,31 +212,31 @@ class PeopleInNeed extends React.Component {
                 className={verified ? classes.verifiedChip : classes.notVerifiedChip}
               />
             </Box>
-            <Typography variant="h6" component="h3" color={'textSecondary'}>
+            <Typography variant="h6" component="h3" style={{color : '#e0e0e0'}}>
             {beneficary.area}, {beneficary.district}, {beneficary.state} ({beneficary.pinCode})
             </Typography>
-            <Typography variant="h6" component="h3" color={'textSecondary'}>Mobile: {beneficary.mobile}</Typography>
-            <Typography variant="h6" component="h3" color={'textSecondary'}>
+            <Typography variant="h6" component="h3" style={{color : '#e0e0e0'}}>Mobile: {beneficary.mobile}</Typography>
+            <Typography variant="h6" component="h3" style={{color : '#e0e0e0'}}>
               Donation Amount: <Chip label={`Rs.${beneficary.donationAmount}`} color="primary" />
             </Typography>
             {expanded ? (<Box>
               <Spacer height={theme.spacing(1)} />
-              <Typography variant="h6" component="h3">What do they need?</Typography>
-              <Typography variant="body1">
+              <Typography variant="h6" component="h3" style={{color : '#e0e0e0'}}>What do they need?</Typography>
+              <Typography variant="body1" style={{color : '#e0e0e0'}}>
                 {beneficary.needs && beneficary.needs.split("\n").map((i,key) => {
                   return <Typography variant="body1" key={key}>{i}</Typography>;
                 })}
               </Typography>
               <Spacer height={theme.spacing(1)} />
-              <Typography variant="body1">
+              <Typography variant="body1" style={{color : '#e0e0e0'}}>
                 {beneficary.notes && beneficary.notes.split("\n").map((i,key) => {
                   return <Typography variant="body1" key={key}>{i}</Typography>;
                 })}
               </Typography>
               <Spacer height={theme.spacing(2)} />
-              <Typography variant="h6" component="h3">Who referred them?</Typography>
-              <Typography variant="body1">{beneficary.enablerName}</Typography>
-              <Typography variant="body1">{beneficary.enablerMobile}</Typography>
+              <Typography variant="h6" component="h3" style={{color : '#e0e0e0'}}>Who referred them?</Typography>
+              <Typography variant="body1" style={{color : '#e0e0e0'}}>{beneficary.enablerName}</Typography>
+              <Typography variant="body1" style={{color : '#e0e0e0'}}>{beneficary.enablerMobile}</Typography>
             </Box>) : (<></>)}
           </CardContent>
           <CardActions>
