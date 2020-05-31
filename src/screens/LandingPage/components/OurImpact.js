@@ -30,7 +30,8 @@ const styles = theme => ({
     }
   },
   analyticNumber: {
-    fontWeight: 500,
+    fontWeight: 600,
+    padding: '0 20px'
   },
   analyticDescriptionContainer: {
     display: 'flex',
@@ -59,14 +60,14 @@ const ANALYTICS = [
   {
     "id": 2,
     "background": "#f7dd70",
-    "highlight": "1,79,200+",
-    "text1": "meals worth of ration delivered.",
+    "highlight": "1,792,000",
+    "text1": "Meals worth of ration delivered.",
   },
   {
     "id": 3,
     "background": "#ffce00",
-    "highlight": "4",
-    "text1": "Operational in Delhi, Assam, UP & MP",
+    "highlight": "16",
+    "text1": "Districts across Delhi, Assam, UP & MP",
   },
   {
     "id": 4,

@@ -8,6 +8,7 @@ import 'antd/dist/antd.css'
 
 const styles = theme => ({
   textContainer: {
+    paddingTop : '20px',
     [theme.breakpoints.down('sm')]: {
       paddingTop: theme.spacing(2),
     }
@@ -47,9 +48,9 @@ class ExplainerBlock extends React.Component {
       <Container maxWidth="lg" style={{ padding: 0, marginTop: 64 }}>
       <Paper elevation={0} style={{ padding: theme.spacing(4), backgroundColor: '#e8e8e8de' }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} lg={3} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Grid item xs={12} lg={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               
-              <Link href="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA" style={{ width: '70%' }}>
+              <Link target="_blank" href={this.props.donationLink.toString()} style={{ width: '70%' }}>
                 <Button size="large" variant="contained" color="primary" style={{ backgroundColor: '#000', width: '100%' }}>Donate Now</Button>
               </Link>
               
@@ -70,11 +71,13 @@ class ExplainerBlock extends React.Component {
               >
               </Modal> */}
           </Grid>
-          <Grid item xs={12} lg={9}>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={12} lg={12}>
             <Box className={classes.textContainer}>
               <Typography variant="h5" align="center" style={{ fontWeight: 500 }}>{this.props.header1.toString()}</Typography>
               <br />
-              <Typography variant="body1" align="center" style={{ fontSize: '1.2rem' }}>{'Support families in need across Delhi, UP, MP and Assam'}</Typography>
+              <Typography variant="body1" align="center" style={{ fontSize: '1.2rem' }}>{this.props.matter.toString()}</Typography>
             </Box>
           </Grid>
         </Grid>

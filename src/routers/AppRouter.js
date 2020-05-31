@@ -17,7 +17,7 @@ const AppRouter = () => (
     <Switch>
       <Route path="/" component={CovidLandingPage} exact={true} />
       <Route path="/enablerLanding" component={EnablerPage} exact={true} />
-      <Route path="/peopleInNeed" component={PeopleInNeedPage} exact={true} />
+      <Route path="/rationRelief" component={PeopleInNeedPage} exact={true} />
       <Route path="/livelihoodSupport" component={LivelihoodSupport} exact={true}/>
       <Route path="/gharKiAas" component={Transportation} exact={true} />
       <Route path="/mentalHealthSupport" component={MentalHealth} exact={true}/>

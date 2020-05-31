@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 import Div100vh from 'react-div-100vh'
+
+import axios from 'axios';
+
 import { Typography, Box, withStyles, Container, Button, Link } from '@material-ui/core';
 
 import Spacer from '../../components/Spacer';
@@ -17,6 +20,8 @@ import Footer from './components/Footer'
 import CarouselSlide1 from '../../assets/img/carousel/slide1.jpg';
 import CarouselSlide2 from '../../assets/img/carousel/slide2.jpg';
 
+
+// const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coronaIndia/miscellanousData'
 const SLIDES = [
   {
     "id": 1,
@@ -48,6 +53,7 @@ export class LandingPage extends React.Component {
   componentDidMount() {
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
+    // const response = await axios.get(API_URL)
   }
 
   render() {

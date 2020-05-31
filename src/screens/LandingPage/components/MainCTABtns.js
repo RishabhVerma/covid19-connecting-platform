@@ -98,7 +98,7 @@ class MainCTABtns extends React.Component {
 
           <Grid item lg={2} />
           <Grid item xs={12} md={12} lg={4}>
-            <Link href="/peopleInNeed">
+            <Link href="/rationRelief">
               <Paper elevation={3} className={classes.ctaBtnContainer}>
                 <Box style={{ textAlign: 'center', paddingTop: theme.spacing(1) }}>
                   <AccountBalanceWalletIcon className={classes.icon} />

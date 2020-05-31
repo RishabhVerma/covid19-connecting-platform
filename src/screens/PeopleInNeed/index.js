@@ -9,6 +9,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import Spacer from '../../components/Spacer';
 import NavBar from '../LandingPage/components/NavBar'
 import ExplainerBlock from '../../components/ExplainerBlock';
+import Carousel from '../LandingPage/components/Carousel';
+
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -20,15 +22,32 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
+import CarouselImg1 from '../../assets/img/carousel/slide1.jpg';
+import CarouselImg2 from '../../assets/img/carousel/slide2.jpg';
+
+
 import axios from 'axios';
 
 var sha512 = require("sha512")
+let hashSequence;
 
 
 const API_URL = 'https://v2-api.sheety.co/848e91664bbff4a95917dd9b6ccdf9f0/coronaIndia/masterData';
 
-let hashSequence;
-
+const SLIDES = [
+  {
+      "id": 1,
+      "text": "",
+      "img": CarouselImg1,
+      "bgPosition": 'center center',
+  },
+  {
+      "id": 2,
+      "text": "",
+      "img": CarouselImg2,
+      "bgPosition": '10% 30%',
+  },
+];
 
 const styles = theme => ({
   container: {
@@ -160,7 +179,6 @@ class PeopleInNeed extends React.Component {
 
   payUMoney = (count) => {
     
-    console.log(count)
     let txnId = new Date().toLocaleString().replace(/\D+/g, '')
     let hashKey = this.generateHashKey(txnId, this.state.amountToBeDonated)
     
@@ -303,25 +321,32 @@ class PeopleInNeed extends React.Component {
     return (
       <>
         <NavBar />
-        <ExplainerBlock header1='600INR provides a family with 2 week supply of food & essentials.'/>
+        <Carousel slides={SLIDES} />
+        <ExplainerBlock 
+          header1='600INR provides a family with 2 week supply of food & essentials.'
+          matter='Support families in need across Delhi, UP, MP and Assam'
+          donationLink="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA"
+        />
         <Container maxWidth="lg" style={{ padding: 0 }}>
         <Box className={classes.container}>
           <Spacer height={theme.spacing(2)} />
           <Typography variant="h4" component="h1">Transparency  Matters</Typography>
           <br />
-          <Typography variant="body1">
-            <strong>
-              {'View and connect with our crowdsources in-need beneficiaries.'}
-            </strong>
+          <Typography variant="h6">
+              {'Families of daily wage earners, who are domestic helpers, laborers, and so many others, are running out of supplies daily in the midst of the current crisis.'}
           </Typography>
           <br />
           <Typography variant="body1">
-            {'We are building a publicly available list for you to connect directly with those in need. Below is a list of families who need direct support, if you are located nearby and interested in directly supporting. Contact the numbers below directly! '}
+            {'IAC is stepping up to identify and locate vulnerable people to provide emergency rations and hygiene products – this is a community initiative to connect supplies with those in need! We are actively working in 4 states, Delhi NCR, Uttar Pradesh, Madhya Pradesh, Assam!'}
+          </Typography>
+          <br />
+          <Typography variant="body1">
+            {'Our initiative is unique because of our crowdsourced beneficiary list, you join the community effort, too. You can directly help a family in need put dinner on their table.'}
           </Typography>
           <br />
           <Typography variant="body1" align="justify">
             <em>
-              {'You can filter by a particular state to see beneficiaries from one particular state.'}
+              {'Select an individual or group below to sponsor directly.'}
             </em>
           </Typography>
           <br />
