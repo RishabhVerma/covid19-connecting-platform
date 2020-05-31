@@ -222,13 +222,13 @@ class LivelihoodSupport extends Component {
                             >
                             </Checkbox>
                         </Box>
-                        <Typography variant="h6" component="h3"  style={{color : '#e0e0e0'}}>
+                        <Typography variant="subtitle1" component="h3"  style={{color : '#e0e0e0'}}>
                             {beneficiary.area}, {beneficiary['district/city']}, {beneficiary.state}
                         </Typography>
-                        <Typography variant="h6" component="h3"  style={{color : '#e0e0e0'}}>Mobile : {beneficiary.contact}</Typography>
+                        <Typography variant="subtitle1" component="h3"  style={{color : '#e0e0e0'}}>Pre-pandemic Occupation : {beneficiary.prePandemicOccupation}</Typography>
                         <Box>
                             <MuiThemeProvider theme={customizedTheme}>
-                                    <Typography variant="h6" component="h3" style={{color : '#e0e0e0'}}>
+                                    <Typography variant="subtitle1" component="h3" style={{color : '#e0e0e0'}}>
                                         Needs : <Tooltip title={`Supports : ${beneficiary.supports}`}><Chip className={classes.neededChip} label={`Rs. ${beneficiary.needs}`}></Chip></Tooltip>
                                     </Typography>
                             </MuiThemeProvider>
@@ -236,10 +236,10 @@ class LivelihoodSupport extends Component {
                         {
                             expanded &&
                             <Box>
-                                <Typography variant="h6" component="h3"  style={{color : '#e0e0e0'}}>
+                                <Typography variant="subtitle1" component="h3"  style={{color : '#e0e0e0'}}>Mobile : {beneficiary.contact}</Typography>
+                                <Typography variant="subtitle1" component="h3"  style={{color : '#e0e0e0'}}>
                                     Income : <Chip className={classes.incomeChip} label={`Rs. ${beneficiary.income}`}></Chip>
                                 </Typography>
-                                <Typography variant="h6" component="h3"  style={{color : '#e0e0e0'}}>Pre-pandemic Occupation : {beneficiary.prePandemicOccupation}</Typography>
                             </Box>
 
                         }
@@ -303,7 +303,11 @@ class LivelihoodSupport extends Component {
         return(
             <>
                 <NavBar />
-                <ExplainerBlock header1='600INR provides a family with 2 week supply of food & essentials.'/>
+                <ExplainerBlock 
+                    header1=''
+                    matter=''
+                    donationLink="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA"
+                />
                 <Container maxWidth="lg" style={{ padding: 0 }}>
                 <Box className={classes.container}>
                     <Spacer height={theme.spacing(2)} />

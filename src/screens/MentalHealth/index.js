@@ -82,8 +82,8 @@ const FooterText = () => {
             unmountOnExit
             appear
         >
-            <Box style={{borderRadius: '10px', textAlign:"center", background: "#cfd7e6", marginTop: '30px', padding: '20px'}}>
-                <Typography variant="h6">Call our mental & emotional health helpline today at <Button href="tel:011-411-82977">011-411-82977</Button> !</Typography>
+            <Box style={{borderRadius: '10px', textAlign:"center", background: "#cfd7e6", marginTop: '30px', padding: '15px'}}>
+                <Typography variant="h6">Call our mental & emotional health helpline today at <Button style={{fontSize:'25px', color:'#224f79', fontWeight: '600'}} href="tel:011-411-82977">011-411-82977</Button></Typography>
             </Box>
         </CSSTransition>
     )
@@ -115,25 +115,25 @@ const MentalHealth = () => {
                     <Grid item lg={4} />
                 </Grid>
                 <Grid container>
-                    <Grid item lg={1} />
-                    <Grid item lg={10}>
+                    <Grid item lg={1} md={1} sm={1}/>
+                    <Grid item lg={10} md={10} sm={10}>
                         <Paragraph />
                     </Grid>
-                    <Grid item lg={1} />
+                    <Grid item lg={1} md={1} sm={1}/>
                 </Grid>
                 <Grid container>
-                    <Grid item lg={2} md={1}/>
-                    <Grid item lg={8} md={10} sm={12}>
+                    <Grid item lg={2} md={1} sm={1}/>
+                    <Grid item lg={8} md={10} sm={10}>
                         <FooterText />
                     </Grid>
-                    <Grid item lg={2} md={1}/>
+                    <Grid item lg={2} md={1} sm={1}/>
                 </Grid>
                 <Grid container>
-                    <Grid item lg={2} md={1}/>
-                    <Grid item lg={8} md={10} sm={12}>
+                    <Grid item lg={2} md={1} sm={1}/>
+                    <Grid item lg={8} md={10} sm={10}>
                         <Footer />
                     </Grid>
-                    <Grid item lg={2} md={1}/>
+                    <Grid item lg={2} md={1} sm={1}/>
                 </Grid>
             </Box>
         </>

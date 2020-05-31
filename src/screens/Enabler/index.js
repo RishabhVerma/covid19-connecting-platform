@@ -49,7 +49,11 @@ class EnablerLandingPage extends React.Component {
     return (
       <>
         <NavBar />
-        <ExplainerBlock header1='600INR provides a family with 2 week supply of food & essentials.'/>
+        <ExplainerBlock 
+          header1='600INR provides a family with 2 week supply of food & essentials.'
+          matter='Support families in need across Delhi, UP, MP and Assam'
+          donationLink="https://www.payumoney.com/paybypayumoney/#/A9983228ABD06FC4F131181353738EAA"
+        />
         <Container maxWidth="lg" style={{ padding: 0 }}>
         <Box className={classes.container}>
             <Spacer height={theme.spacing(2)} />
