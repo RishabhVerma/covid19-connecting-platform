@@ -8,12 +8,12 @@ import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRigh
 const HeaderText = () => (
     <CSSTransition
         in={true}
-        timeout={1000}
+        timeout={2000}
         classNames="fade"
         unmountOnExit
         appear
     >
-        <Box style={{ borderRadius: '0 10px', textAlign: 'center', background: '#d4ffdf' }}>
+        <Box style={{ borderRadius: '0 10px', textAlign: 'center', background: '#d4ffdf', padding: '6px' }}>
             <Typography variant="h2">It’s a difficult time.</Typography>
         </Box>
     </CSSTransition>
@@ -27,7 +27,7 @@ const MiddleText = () => (
         unmountOnExit
         appear
     >
-        <Box style={{ borderRadius: '10px 0', background: '#dbfffb' }}>
+        <Box style={{ borderRadius: '10px 0', background: '#dbfffb', padding: '5px' }}>
             <Typography variant="h5" style={{ paddingLeft: '20px' }}>The outbreak of COVID-19 pandemic has made many people feel anxious and distressed.</Typography>
         </Box>
     </CSSTransition>

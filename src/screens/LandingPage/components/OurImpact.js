@@ -18,7 +18,8 @@ const styles = theme => ({
     background: '#ffce00',
     display: 'flex',
     padding: theme.spacing(1),
-    height: 80,
+    height: 90,
+    // justifyContent: 'space-between',/
   },
   analyticNumberContainer: {
     width: 130,
@@ -31,12 +32,18 @@ const styles = theme => ({
   },
   analyticNumber: {
     fontWeight: 600,
-    padding: '0 20px'
+    paddingRight: '10px',
+    [theme.breakpoints.down('md')]: {
+      padding: '0 20px'
+    }
   },
   analyticDescriptionContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    [theme.breakpoints.down('md')]:{
+      paddingRight: '20px'
+    }
   },
   slideNavBtnContainer: {
     position: 'absolute',
@@ -54,7 +61,7 @@ const ANALYTICS = [
   {
     "id": 1,
     "background": "#ffce00",
-    "highlight": "16,000+",
+    "highlight": "30,000+",
     "text1": "Families helped.",
   },
   {
@@ -67,11 +74,17 @@ const ANALYTICS = [
     "id": 3,
     "background": "#ffce00",
     "highlight": "16",
-    "text1": "Districts across Delhi, Assam, UP & MP",
+    "text1": "Districts across Delhi, Assam, UP & MP.",
   },
   {
     "id": 4,
     "background": "#f7dd70",
+    "highlight": "1,20,000",
+    "text1": "Benefeciaries helped.",
+  },
+  {
+    "id": 5,
+    "background": "#ffce00",
     "highlight": "100+",
     "text1": "Volunteers working on ground.",
   },
@@ -102,7 +115,7 @@ const IMAGES = [
     "id": 5,
     "img": SlideImg5,
     "caption": "Pramila working to provide rations in a Korku tribal village (Satpura Forest, Madhya Pradesh).",
-  }
+  },
 ]
 
 class OurImpact extends React.Component {
@@ -132,10 +145,10 @@ class OurImpact extends React.Component {
     }
   }
 
-  renderAnalytic(analytic) {
+  renderAnalytic(analytic, index) {
     const { classes } = this.props;
     return (
-      <Grid item xs={12} md={6} lg={3} key={analytic.id}>
+      <Grid item xs={12} md={6} lg={ index%2==0 ? 2 : 3} key={analytic.id}>
         <Box className={classes.analyticContainer} style={{ background: analytic.background }}>
           <Box className={classes.analyticNumberContainer}>
             <Typography variant="h5" component="h4" className={classes.analyticNumber}>{analytic.highlight}</Typography>
@@ -196,7 +209,7 @@ class OurImpact extends React.Component {
       </Paper>
       <Paper elevation={0}>
         <Grid container spacing={0}>
-          { ANALYTICS.map(analytic => this.renderAnalytic(analytic)) }
+          { ANALYTICS.map((analytic, index) => this.renderAnalytic(analytic, index)) }
         </Grid>
       </Paper>
       <Paper elevation={0} className={classes.container} style={{padding: 0}}>
