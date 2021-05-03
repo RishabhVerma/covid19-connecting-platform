@@ -27,7 +27,7 @@ class SmallDescription extends React.Component {
         </Typography>
       </Paper>
       <Paper elevation={0} className={classes.container}>
-        <Typography variant="h5">Projects in Action?</Typography>
+        <Typography variant="h5">Projects in Action</Typography>
       </Paper>
       <Paper elevation={0} className={classes.container} style={{ backgroundColor: '#e8e8e8de' }}>
         <ul>
@@ -77,6 +77,7 @@ class SmallDescription extends React.Component {
         </Typography>
         <Spacer />
         <ul>
+          <li><Typography variant="body1" align="justify">Fully equipped ambulances to ensure patients are able to reach hospitals for a timely treatment.</Typography></li>
           <li><Typography variant="body1" align="justify">Vaccination drive in Delhi slums</Typography></li>
           <li><Typography variant="body1" align="justify">Mental Health support for caregivers</Typography></li>
           <li><Typography variant="body1" align="justify">Food and accommodation for paramedics placed in Govt. hospitals</Typography></li>
