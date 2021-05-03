@@ -77,7 +77,7 @@ class SmallDescription extends React.Component {
         </Typography>
         <Spacer />
         <ul>
-          <li><Typography variant="body1" align="justify">Fully equipped ambulances to ensure patients are able to reach hospitals for a timely treatment.</Typography></li>
+          <li><Typography variant="body1" align="justify">Fully equipped ambulances to ensure critical patients are able to reach hospitals for a timely treatment.</Typography></li>
           <li><Typography variant="body1" align="justify">Vaccination drive in Delhi slums</Typography></li>
           <li><Typography variant="body1" align="justify">Mental Health support for caregivers</Typography></li>
           <li><Typography variant="body1" align="justify">Food and accommodation for paramedics placed in Govt. hospitals</Typography></li>
