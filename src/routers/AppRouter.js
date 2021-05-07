@@ -7,7 +7,7 @@ import NotFoundPage from '../components/NotFoundPage';
 
 import EnablerPage from '../screens/Enabler';
 import CovidLandingPage from '../screens/LandingPage';
-import NewLandingPage from '../screens/NewLandingPage';
+// import NewLandingPage from '../screens/NewLandingPage';
 import PeopleInNeedPage from '../screens/PeopleInNeed';
 import LivelihoodSupport from '../screens/LivelihoodSupport';
 import Transportation from '../screens/Transportation';
@@ -16,7 +16,7 @@ import MentalHealth from '../screens/MentalHealth';
 const AppRouter = () => (
   <Router history={history}>
     <Switch>
-      <Route path="/" component={NewLandingPage} exact={true} />
+      <Route path="/" component={CovidLandingPage} exact={true} />
       <Route path="/iac1" component={CovidLandingPage} exact={true} />
       <Route path="/enablerLanding" component={EnablerPage} exact={true} />
       <Route path="/rationRelief" component={PeopleInNeedPage} exact={true} />
