@@ -30,7 +30,7 @@
     "localtunnel": "^2.0.0",
     "lodash": "^4.17.15",
     "material-ui-image": "^3.2.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mui-datatables": "^2.13.3",
     "notistack": "^0.9.7",
     "react-div-100vh": "^0.3.8",
